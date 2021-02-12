@@ -63,6 +63,9 @@ FROM
 WHERE color = 'red';
 
 -- ii
+SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘red’
+    UNION
+    SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘green’
 
 -- iii
 
@@ -74,6 +77,9 @@ FROM
 WHERE color = 'red' OR address = '1065 Military Trail';
 
 -- iv
+SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘red’
+    INTERSECT
+    SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘green’
 
 -- v
 
@@ -88,6 +94,10 @@ HAVING COUNT(*) = (
 );
 
 -- vi
+SELECT Catalog.sid FROM Catalog 
+WHERE NOT EXISTS (SELECT Parts.pid FROM Parts 
+WHERE Parts.color=’red’ AND NOT EXISTS (SELECT Catalog2.sid FROM Catalog2 
+WHERE Catalog2.sid=Catalog.sid AND Catalog2.pid=Parts.pid))
 
 -- vii
 
@@ -116,6 +126,13 @@ HAVING COUNT(*) = (
 );
 
 -- viii
+SELECT Catalog.sid FROM Catalog 
+WHERE NOT EXISTS (SELECT Parts.pid FROM Parts WHERE Parts.color=’red’ 
+AND NOT EXISTS (SELECT Catalog2.sid FROM Catalog2 WHERE Catalog2.sid=Catalog.sid AND Catalog2.pid=Parts.pid))
+UNION
+SELECT Catalog.sid FROM Catalog 
+WHERE NOT EXISTS (SELECT Parts.pid FROM Parts WHERE Parts.color=’green’ 
+AND NOT EXISTS (SELECT Catalog3.sid FROM Catalog3 WHERE Catalog3.sid=Catalog.sid AND Catalog3.pid=Parts.pid))
 
 -- ix
 
@@ -134,6 +151,9 @@ FROM
 WHERE (t1.cost > t2.cost AND t1.pid = t2.pid);
 
 -- x
+SELECT Catalog.pid FROM Catalog 
+WHERE EXISTS (SELECT Catalog2.sid FROM Catalog2 
+WHERE Catalog2.sid != Catalog.sid AND Catalog2.pid = Catalog.pid)
 
 -- xi
 
@@ -152,3 +172,6 @@ WHERE
     );
 
 -- xii
+SELECT Catalog.pid FROM Catalog 
+WHERE Catalog.cost<200 AND NOT EXISTS (SELECT Catalog2.pid FROM Catalog2 
+WHERE Catalog2.pid=Catalog.pid AND Catalog2.sid=Suppliers.sid)
