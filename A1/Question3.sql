@@ -5,9 +5,9 @@ DROP TABLE IF EXISTS Parts;
 DROP TABLE IF EXISTS Catalog;
 
 CREATE TABLE IF NOT EXISTS Suppliers(
-    sid     INTEGER PRIMARY KEY,
+    [sid]     INTEGER PRIMARY KEY,
     sname   TEXT,
-    address TEXT
+    [address] TEXT
 );
 
 CREATE TABLE IF NOT EXISTS Parts(
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Parts(
 );
 
 CREATE TABLE IF NOT EXISTS Catalog(
-    sid     INTEGER,
+    [sid]     INTEGER,
     pid     INTEGER,
     cost    REAL,
     PRIMARY KEY("sid", "pid")
@@ -65,7 +65,7 @@ WHERE color = 'red';
 -- ii
 SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘red’
     UNION
-    SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘green’
+    SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘green’;
 
 -- iii
 
@@ -79,7 +79,7 @@ WHERE color = 'red' OR address = '1065 Military Trail';
 -- iv
 SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘red’
     INTERSECT
-    SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘green’
+    SELECT Suppliers.sid FROM Parts, Catalog WHERE color = ‘green’;
 
 -- v
 
@@ -94,10 +94,10 @@ HAVING COUNT(*) = (
 );
 
 -- vi
-SELECT Catalog.sid FROM Catalog 
+SELECT Catalog1.sid FROM Catalog AS Catalog1
 WHERE NOT EXISTS (SELECT Parts.pid FROM Parts 
-WHERE Parts.color=’red’ AND NOT EXISTS (SELECT Catalog2.sid FROM Catalog2 
-WHERE Catalog2.sid=Catalog.sid AND Catalog2.pid=Parts.pid))
+WHERE Parts.color='red' AND NOT EXISTS (SELECT Catalog2.sid FROM Catalog AS Calalog2 
+WHERE Catalog2.sid=Catalog1.sid AND Catalog2.pid=Parts.pid));
 
 -- vii
 
@@ -127,12 +127,12 @@ HAVING COUNT(*) = (
 
 -- viii
 SELECT Catalog.sid FROM Catalog 
-WHERE NOT EXISTS (SELECT Parts.pid FROM Parts WHERE Parts.color=’red’ 
-AND NOT EXISTS (SELECT Catalog2.sid FROM Catalog2 WHERE Catalog2.sid=Catalog.sid AND Catalog2.pid=Parts.pid))
+WHERE NOT EXISTS (SELECT Parts.pid FROM Parts WHERE Parts.color='red' 
+AND NOT EXISTS (SELECT Catalog2.sid FROM Catalog AS Catalog2 WHERE Catalog2.sid=Catalog.sid AND Catalog2.pid=Parts.pid))
 UNION
 SELECT Catalog.sid FROM Catalog 
-WHERE NOT EXISTS (SELECT Parts.pid FROM Parts WHERE Parts.color=’green’ 
-AND NOT EXISTS (SELECT Catalog3.sid FROM Catalog3 WHERE Catalog3.sid=Catalog.sid AND Catalog3.pid=Parts.pid))
+WHERE NOT EXISTS (SELECT Parts.pid FROM Parts WHERE Parts.color='green'
+AND NOT EXISTS (SELECT Catalog3.sid FROM Catalog AS Catalog3 WHERE Catalog3.sid=Catalog.sid AND Catalog3.pid=Parts.pid));
 
 -- ix
 
@@ -152,8 +152,8 @@ WHERE (t1.cost > t2.cost AND t1.pid = t2.pid);
 
 -- x
 SELECT Catalog.pid FROM Catalog 
-WHERE EXISTS (SELECT Catalog2.sid FROM Catalog2 
-WHERE Catalog2.sid != Catalog.sid AND Catalog2.pid = Catalog.pid)
+WHERE EXISTS (SELECT Catalog2.sid FROM Catalog AS Catalog2 
+WHERE Catalog2.sid != Catalog.sid AND Catalog2.pid = Catalog.pid);
 
 -- xi
 
@@ -173,5 +173,5 @@ WHERE
 
 -- xii
 SELECT Catalog.pid FROM Catalog 
-WHERE Catalog.cost<200 AND NOT EXISTS (SELECT Catalog2.pid FROM Catalog2 
-WHERE Catalog2.pid=Catalog.pid AND Catalog2.sid=Suppliers.sid)
+WHERE Catalog.cost<200 AND NOT EXISTS (SELECT Catalog2.pid FROM Catalog as Catalog2 
+WHERE Catalog2.pid=Catalog.pid AND Catalog2.sid=Suppliers.sid);
