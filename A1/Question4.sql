@@ -59,26 +59,32 @@ INSERT INTO Employees VALUES(1876, "ibu", 30846);
 --ii
 SELECT ename FROM Aircraft, Certified, Employees 
 WHERE Aircraft.aid=Certified.aid 
-AND Employees.eid = Certified.eid AND aname=’boeing’
+AND Employees.eid = Certified.eid AND aname="boeing";
 
 --iii
 
 --iv
 SELECT Flights.flno FROM Employees, Aircraft, Certified, Flights 
-WHERE Employees.salary > 100,000 
+WHERE Employees.salary > 100000 
 AND Flights.distance < Aircraft.cruisingrange 
-AND Certified.aid = Aircraft.aid AND Certified.eid = Employees.eid
+AND Certified.aid = Aircraft.aid AND Certified.eid = Employees.eid;
 --v
+
 --vi
 SELECT Employees.eid 
 FROM Employees 
-WHERE Employees.salary = (SELECT MAX Employees1.salary FROM Employees1)
+WHERE Employees.salary = (SELECT MAX Employees1.salary FROM Employees1);
 
 --vii
 
 --viii
+SELECT Temp.eid 
+FROM (SELECT Certified.eid, COUNT (Certified.aid) AS aircraftcount
+FROM Certified 
+GROUP BY Certified.eid) AS Temp 
+WHERE Temp.aircraftcount = (SELECT MAX(Temp.aircraftcount) FROM Temp);
 
 --ix
 
 --x
-SELECT SUM (Employees.salary) FROM Employees
+SELECT SUM (Employees.salary) FROM Employees;
