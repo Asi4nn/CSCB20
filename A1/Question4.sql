@@ -54,3 +54,32 @@ INSERT INTO Employees VALUES(9058, "dave" 48373);
 INSERT INTO Employees VALUES(985, "maria"  7899);
 INSERT INTO Employees VALUES(744, "gigi" 88474);
 INSERT INTO Employees VALUES(1876, "ibu" 30846);
+
+-- i
+
+--ii
+SELECT ename FROM Aircraft, Certified, Employees 
+WHERE Aircraft.aid=Certified.aid 
+AND Employees.eid = Certified.eid AND aname=’boeing’
+
+--iii
+
+--iv
+SELECT Flights.flno FROM Employees, Aircraft, Certified, Flights 
+WHERE Employees.salary > 100,000 
+AND Flights.distance < Aircraft.cruisingrange 
+AND Certified.aid = Aircraft.aid AND Certified.eid = Employees.eid
+--v
+--vi
+SELECT Employees.eid 
+FROM Employees 
+WHERE Employees.salary = (SELECT MAX Employees1.salary FROM Employees1)
+
+--vii
+
+--viii
+
+--ix
+
+--x
+SELECT SUM (Employees.salary) FROM Employees
