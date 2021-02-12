@@ -63,6 +63,7 @@ FROM
 WHERE color = 'red';
 
 -- ii
+
 SELECT Catalog.sid FROM Catalog, Parts WHERE color = "red"
     UNION
     SELECT Catalog.sid FROM Parts, Catalog WHERE color = "green";
@@ -77,6 +78,7 @@ FROM
 WHERE color = 'red' OR address = '1065 Military Trail';
 
 -- iv
+
 SELECT Catalog.sid FROM Parts, Catalog WHERE color = "red"
     INTERSECT
     SELECT Catalog.sid FROM Parts, Catalog WHERE color = "green";
@@ -94,6 +96,7 @@ HAVING COUNT(*) = (
 );
 
 -- vi
+
 SELECT Catalog1.sid FROM Catalog AS Catalog1
 WHERE NOT EXISTS (SELECT Parts.pid FROM Parts 
 WHERE Parts.color="red" AND NOT EXISTS (SELECT Catalog2.sid FROM Catalog AS Calalog2 
@@ -172,6 +175,7 @@ WHERE
     );
 
 -- xii
+
 SELECT Catalog.pid FROM Catalog 
 WHERE Catalog.cost<200 AND NOT EXISTS (SELECT Catalog2.pid FROM Catalog AS Catalog2 
 WHERE Catalog2.pid = Catalog.pid AND Catalog2.sid = Suppliers.sid);
