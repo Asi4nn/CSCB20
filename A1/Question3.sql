@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS Catalog(
 INSERT INTO Suppliers VALUES(0, "Wheel Supplier", "123 Industrial Dr");
 INSERT INTO Suppliers VALUES(1, "Wrench Supplier", "321 Industrial Dr");
 INSERT INTO Suppliers VALUES(2, "Red Supplier", "1 Rainbow Road");
-INSERT INTO Suppliers VALUES(3, "Green Supplier", "2 Rainbow Road");
-INSERT INTO Suppliers VALUES(4, "Everything Supplier", "777 Wallstreet");
+INSERT INTO Suppliers VALUES(3, "Green Supplier", "1065 Military Trail");
+INSERT INTO Suppliers VALUES(4, "Canada Suppliers", "777 Wallstreet");
 
 INSERT INTO Parts VALUES(0, "Red Wheel", "red");
 INSERT INTO Parts VALUES(1, "Green Wheel", "green");
@@ -55,24 +55,100 @@ INSERT INTO Catalog VALUES(4, 5, 40);
 
 -- i
 
+SELECT DISTINCT sname 
+FROM 
+    Parts NATURAL JOIN
+    Catalog NATURAL JOIN
+    Suppliers 
+WHERE color = 'red';
+
 -- ii
 
 -- iii
+
+SELECT DISTINCT sid
+FROM 
+    Parts NATURAL JOIN
+    Catalog NATURAL JOIN
+    Suppliers 
+WHERE color = 'red' OR address = '1065 Military Trail';
 
 -- iv
 
 -- v
 
+SELECT sid
+FROM 
+    Parts NATURAL JOIN
+    Catalog
+WHERE pid IN (SELECT pid FROM Parts)
+GROUP BY sid
+HAVING COUNT(*) = (
+    SELECT COUNT(*) FROM Parts
+);
+
 -- vi
 
 -- vii
+
+SELECT sid
+FROM 
+    Parts
+    NATURAL JOIN Catalog
+WHERE pid IN (
+    SELECT pid FROM Parts WHERE color='red'
+)
+GROUP BY sid
+HAVING COUNT(*) = (
+    SELECT COUNT(*) FROM Parts WHERE color='red'
+)
+UNION
+SELECT sid
+FROM 
+    Parts
+    NATURAL JOIN Catalog
+WHERE pid IN (
+    SELECT pid FROM Parts WHERE color='green'
+)
+GROUP BY sid
+HAVING COUNT(*) = (
+    SELECT COUNT(*) FROM Parts WHERE color='green'
+);
 
 -- viii
 
 -- ix
 
+CREATE TEMPORARY VIEW SPC(sid, pid, cost)
+AS
+    SELECT sid, pid, cost
+FROM
+    Parts
+    NATURAL JOIN Catalog
+    NATURAL JOIN Suppliers;
+
+SELECT DISTINCT t1.sid, t2.sid
+FROM
+    SPC AS t1
+    CROSS JOIN SPC AS t2
+WHERE (t1.cost > t2.cost AND t1.pid = t2.pid);
+
 -- x
 
 -- xi
+
+SELECT pid
+FROM
+    Parts
+    NATURAL JOIN Catalog
+    NATURAL JOIN Suppliers
+WHERE 
+    cost = (
+        SELECT MAX(cost) 
+        FROM (Parts 
+                NATURAL JOIN Catalog 
+                NATURAL JOIN Suppliers)
+        WHERE sname="Canada Suppliers"
+    );
 
 -- xii
