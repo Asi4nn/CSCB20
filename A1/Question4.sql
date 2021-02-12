@@ -36,17 +36,17 @@ INSERT INTO Flights VALUES(14, "bhutan", "china", 3890, "2:00:00", "6:00:00");
 INSERT INTO Flights VALUES(15, "india", "pakistan", 4079, "3:50:00", "1:00:00");
 INSERT INTO Flights VALUES(16, "delhi", "dubai", 700, "4:15:00", "6:30:00");
 
-INSERT INTO Aircraft VALUES(9487, "boeing", 7484);
-INSERT INTO Aircraft VALUES(9058, "boeing", 8487);
-INSERT INTO Aircraft VALUES(985, "jet", 4399);
-INSERT INTO Aircraft VALUES(744, "jet", 474);
-INSERT INTO Aircraft VALUES(1876, "boeing", 846);
+INSERT INTO Aircraft VALUES(1, "boeing", 7484);
+INSERT INTO Aircraft VALUES(2, "boeing", 8487);
+INSERT INTO Aircraft VALUES(3, "jet", 4399);
+INSERT INTO Aircraft VALUES(4, "jet", 474);
+INSERT INTO Aircraft VALUES(5, "boeing", 846);
 
-INSERT INTO Certified VALUES(9487, 7484);
-INSERT INTO Certified VALUES(9058, 8487);
-INSERT INTO Certified VALUES(985, 4399);
-INSERT INTO Certified VALUES(744, 474);
-INSERT INTO Certified VALUES(1876, 846);
+INSERT INTO Certified VALUES(9487, 1);
+INSERT INTO Certified VALUES(9058, 2);
+INSERT INTO Certified VALUES(985, 3);
+INSERT INTO Certified VALUES(744, 4);
+INSERT INTO Certified VALUES(1876, 5);
 
 INSERT INTO Employees VALUES(9487, "john", 44783);
 INSERT INTO Employees VALUES(9058, "dave", 48373);
@@ -56,20 +56,26 @@ INSERT INTO Employees VALUES(1876, "ibu", 30846);
 
 -- i
 
+SELECT DISTINCT eid
+FROM
+    Aircraft
+    NATURAL JOIN Certified
+    NATURAL JOIN Employees
+WHERE aname='boeing';
+
 --ii
 SELECT ename FROM Aircraft, Certified, Employees 
 WHERE Aircraft.aid=Certified.aid 
-AND Employees.eid = Certified.eid AND aname="boeing";
+AND Employees.eid = Certified.eid AND aname='boeing';
 
 --iii
 
 --iv
 SELECT Flights.flno FROM Employees, Aircraft, Certified, Flights 
-WHERE Employees.salary > 100000 
+WHERE Employees.salary > 100,000 
 AND Flights.distance < Aircraft.cruisingrange 
 AND Certified.aid = Aircraft.aid AND Certified.eid = Employees.eid;
 --v
-
 --vi
 SELECT Employees.eid 
 FROM Employees 
@@ -78,13 +84,8 @@ WHERE Employees.salary = (SELECT MAX Employees1.salary FROM Employees1);
 --vii
 
 --viii
-SELECT Temp.eid 
-FROM (SELECT Certified.eid, COUNT (Certified.aid) AS aircraftcount
-FROM Certified 
-GROUP BY Certified.eid) AS Temp 
-WHERE Temp.aircraftcount = (SELECT MAX(Temp.aircraftcount) FROM Temp);
 
 --ix
 
 --x
-SELECT SUM (Employees.salary) FROM Employees;
+SELECT SUM (Employees.salary) FROM Employees
