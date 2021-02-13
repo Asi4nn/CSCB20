@@ -51,8 +51,8 @@ INSERT INTO Certified VALUES(1876, 5);
 INSERT INTO Employees VALUES(9487, "john", 44783);
 INSERT INTO Employees VALUES(9058, "dave", 48373);
 INSERT INTO Employees VALUES(985, "maria",  7899);
-INSERT INTO Employees VALUES(744, "gigi", 88474);
-INSERT INTO Employees VALUES(1876, "ibu", 30846);
+INSERT INTO Employees VALUES(744, "gigi", 100474);
+INSERT INTO Employees VALUES(1876, "ibu", 130846);
 
 -- i
 
