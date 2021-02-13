@@ -97,10 +97,15 @@ HAVING COUNT(*) = (
 
 -- vi
 
-SELECT Catalog1.sid FROM Catalog AS Catalog1
-WHERE NOT EXISTS (SELECT Parts.pid FROM Parts 
-WHERE Parts.color="red" AND NOT EXISTS (SELECT Catalog2.sid FROM Catalog AS Calalog2 
-WHERE Catalog2.sid=Catalog1.sid AND Catalog2.pid=Parts.pid));
+SELECT sid
+FROM 
+    Parts NATURAL JOIN
+    Catalog
+WHERE pid IN (SELECT pid FROM Parts WHERE color="red")
+GROUP BY sid
+HAVING COUNT(*) = (
+    SELECT COUNT(*) FROM Parts WHERE color="red"
+);
 
 -- vii
 
@@ -168,14 +173,20 @@ FROM
 WHERE 
     cost = (
         SELECT MAX(cost) 
-        FROM (Parts 
-                NATURAL JOIN Catalog 
-                NATURAL JOIN Suppliers)
+        FROM (
+            Parts 
+            NATURAL JOIN Catalog 
+            NATURAL JOIN Suppliers)
         WHERE sname="Canada Suppliers"
     );
 
 -- xii
 
-SELECT Catalog.pid FROM Catalog 
-WHERE Catalog.cost<200 AND NOT EXISTS (SELECT Catalog2.pid FROM Catalog AS Catalog2 
-WHERE Catalog2.pid = Catalog.pid AND Catalog2.sid = Suppliers.sid);
+SELECT pid
+FROM 
+    Catalog
+WHERE cost < 200
+GROUP BY pid
+HAVING COUNT(*) = (
+    SELECT COUNT(*) FROM Suppliers
+);

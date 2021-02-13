@@ -83,7 +83,12 @@ WHERE cruisingrange >= distance;
 
 --iv
 
-SELECT Flights.flno FROM Employees, Aircraft, Certified, Flights 
+SELECT Flights.flno
+FROM 
+    Employees
+    NATURAL JOIN Aircraft
+    NATURAL JOIN Certified
+    NATURAL JOIN Flights 
 WHERE Employees.salary > 100000
 AND Flights.distance < Aircraft.cruisingrange 
 AND Certified.aid = Aircraft.aid AND Certified.eid = Employees.eid;
@@ -94,13 +99,15 @@ SELECT ename
 FROM
     Employees
     NATURAL JOIN Certified
-    NATURAL JOIN (SELECT * FROM Aircraft WHERE cruisingrange > 3000)
+    NATURAL JOIN Aircraft
+WHERE cruisingrange > 3000
 EXCEPT
 SELECT ename
 FROM
     Employees
     NATURAL JOIN Certified
-    NATURAL JOIN (SELECT * FROM Aircraft WHERE aname = 'boeing')
+    NATURAL JOIN Aircraft
+WHERE aname = 'boeing';
 
 --vi
 
@@ -119,10 +126,14 @@ FROM (
     
 --viii
 
-SELECT Temp.eid 
-FROM (SELECT Certified.eid, COUNT (Certified.aid) AS aircraftcount
+CREATE TEMPORARY VIEW Temp(eid, aircraftcount)
+AS
+    SELECT Certified.eid, COUNT (Certified.aid) 
 FROM Certified 
-GROUP BY Certified.eid) AS Temp 
+GROUP BY Certified.eid;
+
+SELECT Temp.eid 
+FROM Temp
 WHERE Temp.aircraftcount = (SELECT MAX(Temp.aircraftcount) FROM Temp);
 
 --ix
