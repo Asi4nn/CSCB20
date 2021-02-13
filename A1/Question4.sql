@@ -71,6 +71,16 @@ AND Employees.eid = Certified.eid AND aname='boeing';
 
 --iii
 
+SELECT aid
+FROM
+    Aircraft
+    CROSS JOIN (
+        SELECT *
+        FROM Flights
+        WHERE [from]='bonn' and [to]='madras'
+    )
+WHERE cruisingrange >= distance;
+
 --iv
 
 SELECT Flights.flno FROM Employees, Aircraft, Certified, Flights 
@@ -80,14 +90,33 @@ AND Certified.aid = Aircraft.aid AND Certified.eid = Employees.eid;
 
 --v
 
+SELECT ename
+FROM
+    Employees
+    NATURAL JOIN Certified
+    NATURAL JOIN (SELECT * FROM Aircraft WHERE cruisingrange > 3000)
+EXCEPT
+SELECT ename
+FROM
+    Employees
+    NATURAL JOIN Certified
+    NATURAL JOIN (SELECT * FROM Aircraft WHERE aname = 'boeing')
+
 --vi
 
-SELECT Employees.eid 
+SELECT Employees.eid
 FROM Employees 
-WHERE Employees.salary = (SELECT MAX Employees1.salary FROM Employees1);
+WHERE Employees.salary = (SELECT MAX(Employees.salary) FROM Employees);
 
 --vii
 
+SELECT eid
+FROM (
+    SELECT eid, MAX(salary)
+    FROM Employees
+    WHERE salary < (SELECT MAX(salary) FROM Employees)
+);
+    
 --viii
 
 SELECT Temp.eid 
@@ -97,6 +126,12 @@ GROUP BY Certified.eid) AS Temp
 WHERE Temp.aircraftcount = (SELECT MAX(Temp.aircraftcount) FROM Temp);
 
 --ix
+
+SELECT eid
+FROM Employees
+NATURAL JOIN Certified
+GROUP BY eid
+HAVING COUNT(*) = 3;
 
 --x
 
