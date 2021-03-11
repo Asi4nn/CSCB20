@@ -13,7 +13,7 @@ def generateResponse(name: str):
         out = ""
         for char in name:
             if char.isalpha():
-                out += char;
+                out += char
         return "Welcome, " + out + ", to my CSCB20 website"
 
 
