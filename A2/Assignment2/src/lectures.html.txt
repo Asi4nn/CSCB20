@@ -1,0 +1,26 @@
+<ul class="nav-list">
+                <li>
+                    <a href="http://www.africau.edu/images/default/sample.pdf">lecture 1</a>
+                </li>
+                <li>
+                    <a href="http://www.africau.edu/images/default/sample.pdf">lecture 2</a>
+                </li>
+                <li>
+                    <a href="http://www.africau.edu/images/default/sample.pdf">lecture 3</a>
+                </li>
+                <li>
+                    <a href="http://www.africau.edu/images/default/sample.pdf">lecture 4</a>
+                </li>
+                <li>
+                    <a href="http://www.africau.edu/images/default/sample.pdf">lecture 5</a>
+                </li>
+                <li>
+                    <a href="http://www.africau.edu/images/default/sample.pdf">lecture 6</a>
+                </li>
+                <li>
+                    <a href="#http://www.africau.edu/images/default/sample.pdf">lecture 7</a>
+                </li>
+                <li>
+                    <a href="#http://www.africau.edu/images/default/sample.pdf">lecture 8</a>
+                </li>
+            </ul>
