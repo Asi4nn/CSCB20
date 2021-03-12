@@ -63,7 +63,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 /* Navbar */
@@ -100,6 +100,7 @@ a {
     font-size: 2.2rem;
     padding: 2rem;
     text-align: center;
+    color: white;
 }
 
 .nav-list a:hover {
