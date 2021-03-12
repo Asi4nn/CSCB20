@@ -157,3 +157,9 @@ footer > button {
     margin: 2rem;
     align-self: center;
 }
+/* exams */
+.exams-link{
+    padding: 10px;
+    color: black;
+
+}
