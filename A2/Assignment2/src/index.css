@@ -114,8 +114,9 @@ a {
     justify-content: left;
     align-items: flex-start;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: white;
+    margin-bottom: 10rem;
 }
 
 .main > p {
@@ -149,6 +150,7 @@ footer {
 
 footer > p {
     margin: 1rem;
+    color: white;
 }
 
 footer > button {
