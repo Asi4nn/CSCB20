@@ -13,6 +13,7 @@ html {
     box-sizing: border-box;
     font-size: 62.5%;
     scroll-behavior: smooth;
+    min-height: 100%;
 }
 
 /* 1200px / 16px = 75em */
@@ -71,6 +72,7 @@ a {
 .nav {
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
     position: fixed;
     top: 0;
     left: 0;
@@ -81,18 +83,11 @@ a {
 
 .nav-list {
     display: flex;
-    margin-right: 2rem;
 }
 
-@media only screen and (max-width: 28.75em) {
-    .nav {
-        justify-content: center;
-        flex-direction: column;
-    }
-
-    .nav-list {
-        margin: 0 1rem;
-    }
+.nav-list > * {
+    height: 100%;
+    align-items: center;
 }
 
 .nav-list a {
@@ -101,11 +96,30 @@ a {
     padding: 2rem;
     text-align: center;
     color: white;
+    height: 100%;
 }
 
 .nav-list a:hover {
     background: rgb(53, 70, 109);
 }
+
+@media only screen and (max-width: 48em) {
+    .nav {
+        justify-content: center;
+        position: relative;
+    }
+
+    .nav-list {
+        margin: 0 1rem;
+        flex-direction: column;
+    }
+
+    .nav-list > li {
+        width: 100%;
+    }
+}
+
+
 
 /* Main Body */
 
@@ -116,9 +130,22 @@ a {
     align-items: flex-start;
     width: 100%;
     height: 100%;
-    background-color: white;
-    margin-bottom: 10rem;
-    margin-top: 15rem;
+    background-color: burlywood;
+    padding-bottom: 5rem;
+    padding-top: 12rem;
+    min-height: calc(100vh - 10rem);
+}
+
+.main a {
+    text-decoration: underline;
+}
+
+.main a:hover {
+    color: aqua;
+}
+
+.main > * {
+    margin: 0 5rem 0 5rem;
 }
 
 .main > p {
@@ -132,13 +159,11 @@ a {
     margin-bottom: 5rem;
 }
 
-.main > h2 {
-    margin: 0 5rem 0 5rem;
-}
-
 /* Footer */
 
 footer {
+    width: 100%;
+    height: 10rem;
     font-weight: 300;
     display: flex;
     flex-direction: column;
@@ -159,6 +184,11 @@ footer > button {
     margin: 2rem;
     align-self: center;
 }
+
+footer > a:hover {
+    color: aqua;
+}
+
 /* exams font not visible on website*/
 .exams-link{
     padding: 10px;
