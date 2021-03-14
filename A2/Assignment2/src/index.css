@@ -79,6 +79,7 @@ a {
     width: 100%;
     background: rgb(10, 61, 201);
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 .nav-list {
@@ -217,4 +218,27 @@ footer > a:hover {
     padding: 8px 4px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
+}
+
+/* Fade in text */
+
+.fade-in {
+    animation: fadeIn ease 3s;
+    text-align: center;
+    align-self: center;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+.calendar {
+    width: 80vw;
+    height: 100vh;
+    align-self: center;
 }
