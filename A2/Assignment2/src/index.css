@@ -189,17 +189,6 @@ footer > a:hover {
     color: aqua;
 }
 
-/* exams font not visible on website*/
-.exams-link{
-    padding: 10px;
-    color: black;
-
-}
-/* lectures font not visible on website */
-#lecture-list{
-    color: black;
-}
-
 /* tables */
 
 .lecture-table {
