@@ -199,3 +199,31 @@ footer > a:hover {
 #lecture-list{
     color: black;
 }
+
+/* tables */
+
+.lecture-table {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.lecture-table > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.lab-table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;;
+}
+
+.lab-table > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
