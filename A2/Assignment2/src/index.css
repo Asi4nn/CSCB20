@@ -192,15 +192,15 @@ footer > a:hover {
 
 /* tables */
 
-.lecture-table {
+.lec-table {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     border-top: 1px solid black;
     border-right: 1px solid black;
-    background: darkgrey;
+    background: darkgray;
 }
 
-.lecture-table > span {
+.lec-table > span {
     padding: 8px 4px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
@@ -218,6 +218,11 @@ footer > a:hover {
     padding: 8px 4px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
+}
+
+.table-header {
+    background-color: cornflowerblue;
+    font-weight: bold;
 }
 
 /* Fade in text */
