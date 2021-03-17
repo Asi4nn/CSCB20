@@ -247,3 +247,30 @@ footer > a:hover {
     height: 100vh;
     align-self: center;
 }
+
+.syllabus {
+    width: 50vw;
+    height: 100vh;
+    align-self: center;
+}
+
+.feedback {
+    align-items: center;
+}
+
+.button {
+    background: rgb(10, 61, 201);
+    align-self: center;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(40, 91, 250);
+}
