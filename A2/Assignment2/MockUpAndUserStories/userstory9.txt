@@ -1,0 +1,1 @@
+Calendar - students can see the course calendar which has all the dates and times for lectures, labs, assignments, exams and office hours

@@ -1,0 +1,2 @@
+Assignments - students can see a link to markus which can be used to create assignment groups and submit assignments. 
+The instructions and due dates for each assignment can be accessed by clicking and downloading the pdf links for each assignment

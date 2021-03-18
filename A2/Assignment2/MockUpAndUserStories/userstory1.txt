@@ -1,0 +1,2 @@
+Home page - User can see course details such as course description, lecture times, instructor name, contact information, office hours 
+and office location. 
