@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>
+            Website created by Leo Wang, Aisha Abdul Rahiman, and Zhenhao Xu.
+        </p>
+        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">
+            Faculty of Computer Science
+        </a>
+    </footer>
+
+</body>
+</html>

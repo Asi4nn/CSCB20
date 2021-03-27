@@ -1,33 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/static/style.css" type="text/css">
-</head>
-<body>
-    {% block body %}
-    <form action="/login" method="POST">
-    <div class="login">
-        <div class="login-screen">
-            <div class="app-title">
-            <h1>Login</h1>
-            </div>
-            <div class="login-form">
-            <div class="control-group">
-                <input type="text" class="login-field" id="login-name" value="" placeholder="username" name="username">
-                <label class="login-field-icon fui-user" for="login-name"></label>
-            </div>
-            <div class="control-group">
-                <input type="password" class="login-field" id="login-pass" value="" placeholder="password" name="password">
-                <label class="login-field-icon fui-lock" for="login-pass"></label>
-            </div>
-            <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
+{% extends 'base.html' %}
 
-            </div>
-        </div>
-    </div>
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h1>Login</h1>
+
+    <form method="post">
+        <label for="username">Username</label>
+        <input name="username" id="username" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        <input type="submit" value="Log In" class="button">
     </form>
-    {% endblock %}
-</body>
-</html>
+
+    <a href="register">Create an account</a>
+{% endblock %}
