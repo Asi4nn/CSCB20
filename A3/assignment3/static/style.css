@@ -1,0 +1,286 @@
+/* General style */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    min-height: 100%;
+}
+
+/* 1200px / 16px = 75em */
+@media only screen and (max-width: 75em) {
+    html {
+        font-size: 60%;
+    }
+}
+
+/* 980px / 16px = 61.25em */
+@media only screen and (max-width: 61.25em) {
+    html {
+        font-size: 58%;
+    }
+}
+
+/* 460px / 16px = 28.75em */
+@media only screen and (max-width: 28.75em) {
+    html {
+        font-size: 55%;
+    }
+}
+
+body {
+    font-family: "Arial Black", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgb(0, 0, 0);
+}
+
+h1, h2 {
+    font-weight: 700;
+    text-align: center;
+}
+
+h1 {
+    font-size: 6rem;
+}
+
+h2 {
+    font-size: 4.2rem;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Navbar */
+
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(10, 61, 201);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.nav-list {
+    display: flex;
+}
+
+.nav-list > * {
+    height: 100%;
+    align-items: center;
+}
+
+.nav-list a {
+    display: block;
+    font-size: 2.2rem;
+    padding: 2rem;
+    text-align: center;
+    color: white;
+    height: 100%;
+}
+
+.nav-list a:hover {
+    background: rgb(53, 70, 109);
+}
+
+@media only screen and (max-width: 48em) {
+    .nav {
+        justify-content: center;
+        position: relative;
+    }
+
+    .nav-list {
+        margin: 0 1rem;
+        flex-direction: column;
+    }
+
+    .nav-list > li {
+        width: 100%;
+    }
+}
+
+/* Main Body */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    background-color:burlywood;
+    padding-bottom: 5rem;
+    padding-top: 12rem;
+    min-height: calc(100vh - 10rem);
+}
+
+.main a {
+    text-decoration: underline;
+}
+
+.main a:hover {
+    color: aqua;
+}
+
+.main > * {
+    margin: 0 5rem 0 5rem;
+}
+
+.main > p {
+    font-size: 2rem;
+    color: black;
+    margin: 0 10rem 0 10rem;
+}
+
+.main > h1 {
+    align-self: center;
+    margin-bottom: 5rem;
+}
+
+/* Footer */
+
+footer {
+    width: 100%;
+    height: 10rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2rem;
+    background: rgb(10, 61, 201);
+    border-top: 4px solid rgb(20, 80, 201);
+}
+
+footer > p {
+    margin: 1rem;
+    color: white;
+}
+
+footer > a {
+    color: white;
+}
+
+footer > a:hover {
+    color: aqua;
+    text-decoration: underline;
+}
+
+/* tables */
+
+.lec-table {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    background: darkgray;
+}
+
+.lec-table > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.lab-table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    background: darkgray;
+}
+
+.lab-table > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.table-header {
+    background-color: cornflowerblue;
+    font-weight: bold;
+}
+
+/* Fade in text */
+
+.fade-in {
+    animation: fadeIn ease 3s;
+    text-align: center;
+    align-self: center;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+.center-align {
+    align-items: center;
+}
+
+/* Specific-use classes */
+
+.calendar {
+    width: 80vw;
+    height: 100vh;
+    align-self: center;
+}
+
+.syllabus {
+    width: 50vw;
+    height: 100vh;
+    align-self: center;
+}
+
+.button {
+    background: rgb(10, 61, 201);
+    align-self: center;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(40, 91, 250);
+}
+
+/* Forms */
+
+.register-form {
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
