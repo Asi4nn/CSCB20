@@ -1,42 +1,61 @@
-{% extends 'base.html' %}
-
-{% block title %}{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
     <nav id="navbar" class="nav">
         <ul class="nav-list">
             <li>
-                <a href="index.html">Home</a>
+                <a href="index">Home</a>
             </li>
             <li>
-                <a href="syllabus.html">Syllabus</a>
+                <a href="syllabus">Syllabus</a>
             </li>
             <li>
-                <a href="lectures.html">Lectures</a>
+                <a href="lectures">Lectures</a>
             </li>
             <li>
-                <a href="labs.html">Labs</a>
+                <a href="labs">Labs</a>
             </li>
             <li>
-                <a href="assignments.html">Assignments</a>
+                <a href="assignments">Assignments</a>
             </li>
             <li>
-                <a href="courseteam.html">Course Team</a>
+                <a href="courseteam">Course Team</a>
             </li>
             <li>
-                <a href="exams.html">Exams</a>
+                <a href="exams">Exams</a>
             </li>
             <li>
-                <a href="feedback.html">Feedback</a>
+                <a href="feedback">Feedback</a>
             </li>
             <li>
-                <a href="calendar.html">Calendar</a>
+                <a href="calendar">Calendar</a>
             </li>
             <li>
-                <a href="resources.html">Resources</a>
+                <a href="resources">Resources</a>
             </li>
         </ul>
     </nav>
 
-    {% block body %}{% endblock %}
-{% endblock %}
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>
+            Website created by Leo Wang, Aisha Abdul Rahiman, and Zhenhao Xu.
+        </p>
+        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">
+            Faculty of Computer Science
+        </a>
+    </footer>
+
+</body>
+</html>
+
