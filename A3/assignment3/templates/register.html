@@ -3,28 +3,33 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-    <h1>Create Account</h1>
 
-    <form method="post" class="register-form">
-        <label for="username">Username</label>
-        <input name="rusername" id="username" required>
+    <div class="form-wrapper">
+        <h2>Create Account</h2>
+        <form method="post">
+            <label for="username">Username</label>
+            <input name="username" id="username" required>
 
-        <label for="password">Password</label>
-        <input type="password" name="rpassword" id="password" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
 
-        <label for="email">Email</label>
-        <input type="text" name="remail" id="desiredinstructoremail" required>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" required>
+            <br>
 
-        <h3>Select Type of Account:</h3>
-        <label>
-            <input type="radio" id="student" name="usertype" required>
-            Student
-        </label>
-        <label>
-            <input type="radio" id="instructor" name="usertype">
-            Instructor
-        </label>
+            Sign up as:
+            <label>
+                <input type="radio" id="student" name="usertype" required>
+                Student
+            </label>
+            <label>
+                <input type="radio" id="instructor" name="usertype">
+                Instructor
+            </label>
 
-        <input type="submit" value="Register" class="button">
-    </form>
+            <input type="submit" value="Register" class="button">
+        </form>
+        <a href="/">Already have an account?</a>
+    </div>
+
 {% endblock %}

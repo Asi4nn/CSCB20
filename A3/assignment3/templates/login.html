@@ -3,15 +3,29 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
+    <div class="center-align">
+        <h3>Welcome to:</h3>
+        <h1>
+            CSCB63 - Design and Analysis of Data Structures
+        </h1>
+    </div>
+    <br>
 
-    <form method="post">
-        <label for="username">Username</label>
-        <input name="iusername" id="username" required>
-        <label for="password">Password</label>
-        <input type="password" name="ipassword" id="password" required>
-        <input type="submit" value="Log In" class="button">
-    </form>
+    <div class="form-wrapper">
+        <form method="post">
+            <h2>Login</h2>
+            <label for="username">Username</label>
+            <input name="username" id="username" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            <input type="submit" value="Log In" class="button">
+            {% if error != None %}
+                <p>
+                    {{ error }}
+                </p>
+            {% endif %}
+            <a href="register">Create an account</a>
+        </form>
+    </div>
 
-    <a href="register">Create an account</a>
 {% endblock %}
