@@ -4,4 +4,21 @@
 
 {% block content %}
 
-<h3>Hi username, here are your grades:</h3>
+<h3>Hi {{ username }}, here are your grades:</h3>
+<body>
+    {% for row in rows %}
+    <div class="grades-table">
+        <span class="table-header"> name </span>
+        <span class="table-header"> A1 mark </span>
+        <span class="table-header"> A2 mark </span>
+        <span class="table-header"> A3 mark </span>
+        <span class="table-header"> final exam mark </span>
+
+        <span class="table-header"> {{ row[0] }} </span>
+        <span class="table-header"> {{ row[1] }} </span>
+        <span class="table-header"> {{ row[2] }} </span>
+        <span class="table-header"> {{ row[3] }} </span>
+        <span class="table-header"> {{ row[4] }} </span>
+
+
+</body>
