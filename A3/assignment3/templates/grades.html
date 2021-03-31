@@ -4,8 +4,8 @@
 
 {% block content %}
 
-<h3>Hi {{ username }}, here are your grades:</h3>
-<body>
+    <h3>Hi {{ username }}, here are your grades:</h3>
+
     {% for row in rows %}
     <div class="grades-table">
         <span class="table-header"> name </span>
@@ -20,5 +20,6 @@
         <span class="table-header"> {{ row[3] }} </span>
         <span class="table-header"> {{ row[4] }} </span>
 
+    </div>
 
-</body>
+{% endblock %}
