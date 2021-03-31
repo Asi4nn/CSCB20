@@ -20,6 +20,9 @@ def commit():
 def close():
     cxn.close()
 
+# Use these functions by using "?" as placeholder and pass in the values for *values
+# Example: execute("INSERT INTO Table1(value1, value2) VALUES (?, ?)", value1, value2)
+
 
 def field(command, *values):
     cur.execute(command, tuple(values))
