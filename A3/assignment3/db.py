@@ -1,8 +1,11 @@
-from os.path import dirname, relpath, realpath
+from os.path import isfile
 from sqlite3 import connect
 from datetime import datetime
 
 DB_PATH = "./assignment3.db"
+if not isfile(DB_PATH):
+    raise FileNotFoundError("assignment3.db not found")
+
 
 cxn = connect(DB_PATH, check_same_thread=False)
 cur = cxn.cursor()
