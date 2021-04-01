@@ -1,6 +1,6 @@
 from auth import *
 from flask import Flask, redirect, render_template, request, session, abort, url_for
-import os
+from os import urandom
 
 app = Flask(__name__)
 
@@ -39,9 +39,11 @@ def register():
 
 @app.route('/<name>')
 def page(name: str):
+    if 'username' not in session:
+        abort(403)
     return render_template(name + ".html")
 
 
 if __name__ == '__main__':
-    app.secret_key = os.urandom(12)
+    app.secret_key = urandom(12)
     app.run(debug=True, port=5000)
