@@ -17,7 +17,7 @@ def checklogin():
 
     sqlconnection = sqlite3.Connection(dbLocation + "\assignment3.db")
     cursor = sqlconnection.cursor()
-    query1 = "SELECT username, password from Users WHERE username = '{usnm}' AND password = '{pswd}'".format(usnm = USNM, pswd = PSWD)
+    query1 = "SELECT username, password FROM Users WHERE username = '{usnm}' AND password = '{pswd}'".format(usnm = USNM, pswd = PSWD)
 
     rows = cursor.execute(query1)
     rows = rows.fetchall()
@@ -55,3 +55,22 @@ def feedbackpage():
         sqlconnection.commit()
         #add here if usertype = student render_template register.html else dont. also add code for dropdown
         return render_template('register.html')
+
+@app.route("/grades")
+def gradespage():
+    
+    sqlconnection = sqlite3.Connection(dbLocation + "\assignment3.db")
+    cursor = sqlconnection.cursor()
+    if session['usertype'] == student:
+        query1 = "SELECT username, A1 mark, A2 mark, A3 mark, final exam mark FROM Marks WHERE username = ?", username)
+        rows = cursor.execute(query1)
+        rows = rows.fetchone()
+    elif session['usertype'] == instructor:
+        query1 = "SELECT * FROM Marks "
+        rows = cursor.execute(query1)
+        rows = rows.fetchone()
+    return render_template('grades.html')
+
+
+    
+
