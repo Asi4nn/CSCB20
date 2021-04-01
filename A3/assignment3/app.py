@@ -1,8 +1,17 @@
-from auth import *
+from db import *
 from flask import Flask, redirect, render_template, request, session, abort, url_for
 import os
 
 app = Flask(__name__)
+
+
+def valid_login(username: str, password: str):
+    user = record("SELECT * FROM Users WHERE username = ? AND password = ?", username, password)
+    return user is not None
+
+
+def login_user(username: str):
+    session['username'] = username
 
 
 @app.route('/')
@@ -16,7 +25,7 @@ def index():
 def login():
     error = None
     if request.method == 'POST':
-        if valid_login(request.form['username']):
+        if valid_login(request.form['username'], request.form['password']):
             login_user(request.form['username'])
             return redirect(url_for('index'))
         else:
@@ -28,7 +37,8 @@ def login():
 
 @app.route('/logout')
 def logout():
-    close_session()
+    # remove the username from the session if it is there
+    session.pop('username', None)
     return redirect(url_for('login'))
 
 
