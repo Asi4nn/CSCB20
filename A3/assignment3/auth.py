@@ -7,9 +7,9 @@ def valid_login(username: str):
     return user is not None
 
 
-def login_user(username: str, usertype: str):
+def login_user(username: str):
     session['username'] = username
-    session['usertype'] = usertype
+    session['usertype'] = get_usertype(username)
 
 
 def get_usertype(username: str):
