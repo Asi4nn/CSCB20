@@ -1,25 +1,11 @@
 {% extends 'navbase.html' %}
 
-{% block title %}Grades{% endblock %}
+{% block title %}Lectures{% endblock %}
 
 {% block content %}
 
-    <h3>Hi {{ username }}, here are your grades:</h3>
-
-    {% for row in rows %}
-    <div class="grades-table">
-        <span class="table-header"> name </span>
-        <span class="table-header"> A1 mark </span>
-        <span class="table-header"> A2 mark </span>
-        <span class="table-header"> A3 mark </span>
-        <span class="table-header"> final exam mark </span>
-
-        <span class="table-header"> {{ row[0] }} </span>
-        <span class="table-header"> {{ row[1] }} </span>
-        <span class="table-header"> {{ row[2] }} </span>
-        <span class="table-header"> {{ row[3] }} </span>
-        <span class="table-header"> {{ row[4] }} </span>
-
-    </div>
+{% for row in rows %}
+    <span class="table-header"> {{ row }}</span>
+{% endfor %}
 
 {% endblock %}
