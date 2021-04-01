@@ -1,91 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <link rel="stylesheet" href="../static/style.css">
-    <title>Assignments</title>
-</head>
-<body>
-    <nav id="navbar" class="nav">
-        <ul class="nav-list">
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="syllabus.html">Syllabus</a>
-            </li>
-            <li>
-                <a href="lectures.html">Lectures</a>
-            </li>
-            <li>
-                <a href="labs.html">Labs</a>
-            </li>
-            <li>
-                <a href="assignments.html">Assignments</a>
-            </li>
-            <li>
-                <a href="courseteam.html">Course Team</a>
-            </li>
-            <li>
-                <a href="exams.html">Exams</a>
-            </li>
-            <li>
-                <a href="feedback.html">Feedback</a>
-            </li>
-            <li>
-                <a href="calendar.html">Calendar</a>
-            </li>
-            <li>
-                <a href="resources.html">Resources</a>
-            </li>
-        </ul>
-    </nav>
+{% extends 'navbase.html' %}
 
-    <div class="main">
-        <h3>Assignment 1</h3>
-        <p>To be submitted to gradescope.
-        <br>
-        Due January 27th 2021, 11:59pm
-        <br>
-        <a href="http://www.africau.edu/images/default/sample.pdf">a1.pdf</a>
-        <br>
-        <a href="http://www.africau.edu/images/default/sample.pdf">a1.txt</a>
-        </p>
-        <br>
-        <h3>Assignment 2</h3>
-        <p>To be submitted to gradescope.
-        <br>
-        Due February 15th 2021, 11:59pm
-        <br>
-        <a href="http://www.africau.edu/images/default/sample.pdf">a2.pdf</a>
-        <br>
-        <a href="http://www.africau.edu/images/default/sample.pdf">a2.txt</a>
-        </p>
-        <br>
-        <h3>Assignment 3</h3>
-        <p>To be submitted to gradescope.
-        <br>
-        Due March 21st 2021, 11:59pm
-        <br>
-        <a href="http://www.africau.edu/images/default/sample.pdf">a3.pdf</a>
-        <br>
-        <a href="http://www.africau.edu/images/default/sample.pdf">a3.txt</a>
-        </p>
-        <br>
-        <h4>Link to gradescope: 
-        <a href= "https://www.gradescope.com/" target="_blank">https://www.gradescope.com/</a>
-        </h4>
-    </div>
+{% block title %}Assignments{% endblock %}
 
-    <footer>
-        <p>
-            Website created by Leo Wang and Aisha Abdul Rahiman
-        </p>
-        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">
-            Faculty of Computer Science
-        </a>
-    </footer>
+{% block content %}
 
-</body>
-</html>
+    <h3>Assignment 1</h3>
+    <p>To be submitted to gradescope.
+    <br>
+    Due January 27th 2021, 11:59pm
+    <br>
+    <a href="http://www.africau.edu/images/default/sample.pdf">a1.pdf</a>
+    <br>
+    <a href="http://www.africau.edu/images/default/sample.pdf">a1.txt</a>
+    </p>
+    <br>
+    <h3>Assignment 2</h3>
+    <p>To be submitted to gradescope.
+    <br>
+    Due February 15th 2021, 11:59pm
+    <br>
+    <a href="http://www.africau.edu/images/default/sample.pdf">a2.pdf</a>
+    <br>
+    <a href="http://www.africau.edu/images/default/sample.pdf">a2.txt</a>
+    </p>
+    <br>
+    <h3>Assignment 3</h3>
+    <p>To be submitted to gradescope.
+    <br>
+    Due March 21st 2021, 11:59pm
+    <br>
+    <a href="http://www.africau.edu/images/default/sample.pdf">a3.pdf</a>
+    <br>
+    <a href="http://www.africau.edu/images/default/sample.pdf">a3.txt</a>
+    </p>
+    <br>
+    <h4>Link to gradescope:
+    <a href= "https://www.gradescope.com/" target="_blank">https://www.gradescope.com/</a>
+    </h4>
+
+{% endblock %}

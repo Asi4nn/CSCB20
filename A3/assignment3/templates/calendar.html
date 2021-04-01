@@ -1,67 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Calendar</title>
-    <link rel="stylesheet" href="../static/style.css">
-</head>
-<body>
-    <nav id="navbar" class="nav">
-        <ul class="nav-list">
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="syllabus.html">Syllabus</a>
-            </li>
-            <li>
-                <a href="lectures.html">Lectures</a>
-            </li>
-            <li>
-                <a href="labs.html">Labs</a>
-            </li>
-            <li>
-                <a href="assignments.html">Assignments</a>
-            </li>
-            <li>
-                <a href="courseteam.html">Course Team</a>
-            </li>
-            <li>
-                <a href="exams.html">Exams</a>
-            </li>
-            <li>
-                <a href="feedback.html">Feedback</a>
-            </li>
-            <li>
-                <a href="calendar.html">Calendar</a>
-            </li>
-            <li>
-                <a href="resources.html">Resources</a>
-            </li>
-        </ul>
-    </nav>
+{% extends 'navbase.html' %}
 
-    <div class="main">
-        <p>
-            If you wish to subscribe to the calendar the address is:
-            <a href="https://calendar.google.com/calendar/ical/f2oogqnfo1q728k3lcbtr4v478%40group.calendar.google.com/public/basic.ics">
-                ical format
-            </a>
-        </p>
+{% block title %}Calendar{% endblock %}
 
-        <iframe src="https://calendar.google.com/calendar/embed?src=tvt4uft32qcjhg3g1hcoavk3ao%40group.calendar.google.com&ctz=America%2FToronto" style="border: 0" class="calendar" frameborder="0" scrolling="no"></iframe>
-    </div>
+{% block content %}
 
-    <footer>
-        <p>
-            Website created by Leo Wang and Aisha Abdul Rahiman
-        </p>
-        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">
-            Faculty of Computer Science
+    <p>
+        If you wish to subscribe to the calendar the address is:
+        <a href="https://calendar.google.com/calendar/ical/f2oogqnfo1q728k3lcbtr4v478%40group.calendar.google.com/public/basic.ics">
+            ical format
         </a>
-    </footer>
+    </p>
 
-</body>
-</html>
+    <iframe src="https://calendar.google.com/calendar/embed?src=tvt4uft32qcjhg3g1hcoavk3ao%40group.calendar.google.com&ctz=America%2FToronto" style="border: 0" class="calendar" frameborder="0" scrolling="no"></iframe>
+
+{% endblock %}
 

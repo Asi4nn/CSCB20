@@ -1,35 +1,45 @@
-import sqlite3
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from db import *
+from flask import Flask, redirect, render_template, request, session, abort, url_for
 import os
-import sqlite3
-
-
-def get_db():
-    
-    db = getattr(g, '_database', None)
-    if db is None:
-        
-        db = g._database = sqlite3.connect(DATABASE)
-    return db
 
 app = Flask(__name__)
 
 
+def valid_login(username: str, password: str):
+    user = record("SELECT * FROM Users WHERE username = ? AND password = ?", username, password)
+    return user is not None
+
+
+def login_user(username: str):
+    session['username'] = username
+
+
 @app.route('/')
-def home():
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
-        return render_template('index.html')
+def index():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    return render_template('index.html')
 
 
-@app.route('/login', methods=['POST'])
-def do_admin_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
-        session['logged_in'] = True
-    else:
-        flash('wrong password!')
-        return home()
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['username'], request.form['password']):
+            login_user(request.form['username'])
+            return redirect(url_for('index'))
+        else:
+            error = "Invalid username or password"
+    elif 'username' in session:
+        return redirect(url_for('index'))
+    return render_template('login.html', error=error)
+
+
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it is there
+    session.pop('username', None)
+    return redirect(url_for('login'))
 
 
 @app.route('/register')
@@ -37,10 +47,9 @@ def register():
     return render_template('register.html')
 
 
-@app.route("/logout")
-def logout():
-    session['logged_in'] = False
-    return home()
+@app.route('/<name>')
+def page(name: str):
+    return render_template(name + ".html")
 
 
 if __name__ == '__main__':

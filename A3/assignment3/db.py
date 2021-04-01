@@ -1,8 +1,11 @@
-from os.path import dirname, relpath, realpath
+from os.path import isfile
 from sqlite3 import connect
 from datetime import datetime
 
 DB_PATH = "./assignment3.db"
+if not isfile(DB_PATH):
+    raise FileNotFoundError("assignment3.db not found")
+
 
 cxn = connect(DB_PATH, check_same_thread=False)
 cur = cxn.cursor()
@@ -16,6 +19,9 @@ def commit():
 
 def close():
     cxn.close()
+
+# Use these functions by using "?" as placeholder and pass in the values for *values
+# Example: execute("INSERT INTO Table1(value1, value2) VALUES (?, ?)", value1, value2)
 
 
 def field(command, *values):

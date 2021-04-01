@@ -1,137 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Lectures</title>
-    <link rel="stylesheet" href="../static/style.css">
-</head>
-<body>
-    <nav id="navbar" class="nav">
-        <ul class="nav-list">
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="syllabus.html">Syllabus</a>
-            </li>
-            <li>
-                <a href="lectures.html">Lectures</a>
-            </li>
-            <li>
-                <a href="labs.html">Labs</a>
-            </li>
-            <li>
-                <a href="assignments.html">Assignments</a>
-            </li>
-            <li>
-                <a href="courseteam.html">Course Team</a>
-            </li>
-            <li>
-                <a href="exams.html">Exams</a>
-            </li>
-            <li>
-                <a href="feedback.html">Feedback</a>
-            </li>
-            <li>
-                <a href="calendar.html">Calendar</a>
-            </li>
-            <li>
-                <a href="resources.html">Resources</a>
-            </li>
-        </ul>
-    </nav>
+{% extends 'navbase.html' %}
 
-    <div class="main">
-        <h4>Lecture slides and topics:</h4>
-        <br>
-        <div class="lec-table">
-            <span class="table-header">Week</span>
-            <span class="table-header">Topic</span>
-            <span class="table-header">Wed Pre-Lecture</span>
-            <span class="table-header">Thurs Pre-Lecture</span>
-            <span class="table-header">Wed Lecture Slides/Video</span>
-            <span class="table-header">Thurs Lecture Slides/Video</span>
+{% block title %}Lectures{% endblock %}
+
+{% block content %}
+
+    <h4>Lecture slides and topics:</h4>
+    <br>
+    <div class="lec-table">
+        <span class="table-header">Week</span>
+        <span class="table-header">Topic</span>
+        <span class="table-header">Wed Pre-Lecture</span>
+        <span class="table-header">Thurs Pre-Lecture</span>
+        <span class="table-header">Wed Lecture Slides/Video</span>
+        <span class="table-header">Thurs Lecture Slides/Video</span>
 
 
-            <span>1</span>
-            <span>Intro, Worst Case Complexity</span>
-            <span>None</span>
-            <span>
-                CLRS 3.1 or watch these videos on
-                <a href="https://www.youtube.com/watch?v=__vX2sjlpXU" target="_blank">Big Oh</a> and
-                <a href="https://www.youtube.com/watch?v=JU767SDMDvA" target="_blank"> Insertion Sort</a>
-            </span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Intro Slides PDF</a></span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 1</a></span>
+        <span>1</span>
+        <span>Intro, Worst Case Complexity</span>
+        <span>None</span>
+        <span>
+            CLRS 3.1 or watch these videos on
+            <a href="https://www.youtube.com/watch?v=__vX2sjlpXU" target="_blank">Big Oh</a> and
+            <a href="https://www.youtube.com/watch?v=JU767SDMDvA" target="_blank"> Insertion Sort</a>
+        </span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Intro Slides PDF</a></span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 1</a></span>
 
 
-            <span>2</span>
-            <span>Balanced Trees (AVL)</span>
-            <span>None</span>
-            <span>Watch video on <a href="https://www.youtube.com/watch?v=mtvbVLK5xDQ" target="_blank">binary search trees</a></span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 2.1</a></span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 2.2</a></span>
+        <span>2</span>
+        <span>Balanced Trees (AVL)</span>
+        <span>None</span>
+        <span>Watch video on <a href="https://www.youtube.com/watch?v=mtvbVLK5xDQ" target="_blank">binary search trees</a></span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 2.1</a></span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 2.2</a></span>
 
-            <span>3</span>
-            <span>AVL Trees height, and Augment. Interval Trees</span>
-            <span>None</span>
-            <span>None</span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 3</a></span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 3 Sol</a></span>
+        <span>3</span>
+        <span>AVL Trees height, and Augment. Interval Trees</span>
+        <span>None</span>
+        <span>None</span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 3</a></span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Worksheet 3 Sol</a></span>
 
-            <span>4</span>
-            <span>Finish Interval Trees, Heaps and Graph Search Algorithms</span>
-            <span>None</span>
-            <span>Read Chapter 6.1-6.4</span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Interval Search Tree Proof</a></span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Heap slides</a></span>
+        <span>4</span>
+        <span>Finish Interval Trees, Heaps and Graph Search Algorithms</span>
+        <span>None</span>
+        <span>Read Chapter 6.1-6.4</span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Interval Search Tree Proof</a></span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Heap slides</a></span>
 
-            <span>5</span>
-            <span>Graph Searches and Minimum Spanning Trees</span>
-            <span>Term Test Wed</span>
-            <span>If you have not had your tutorial, read the graph handout on the tutorials page</span>
-            <span>None</span>
-            <span>Graph search slides</span>
+        <span>5</span>
+        <span>Graph Searches and Minimum Spanning Trees</span>
+        <span>Term Test Wed</span>
+        <span>If you have not had your tutorial, read the graph handout on the tutorials page</span>
+        <span>None</span>
+        <span>Graph search slides</span>
 
-            <span>6</span>
-            <span>Proof of Prims, Dijkstra's Algorithm, Strongly Connected Components</span>
-            <span>Ch 24.3, Practice Prims algorithm</span>
-            <span>22.5, Review DFS - make sure you understand it</span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Dijkstra PDF</a></span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Strongly Connected Components Slides</a></span>
+        <span>6</span>
+        <span>Proof of Prims, Dijkstra's Algorithm, Strongly Connected Components</span>
+        <span>Ch 24.3, Practice Prims algorithm</span>
+        <span>22.5, Review DFS - make sure you understand it</span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Dijkstra PDF</a></span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Strongly Connected Components Slides</a></span>
 
-            <span>7</span>
-            <span>Amortized Analysis</span>
-            <span>Ch. 17.4, Ch. 21</span>
-            <span>None</span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Amortized slides</a></span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Potential slides</a></span>
+        <span>7</span>
+        <span>Amortized Analysis</span>
+        <span>Ch. 17.4, Ch. 21</span>
+        <span>None</span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Amortized slides</a></span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Potential slides</a></span>
 
-            <span>8</span>
-            <span>Disjoint Sets, Fibonacci Heaps</span>
-            <span>Ch. 20</span>
-            <span>None</span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Disjoint sets PDF</a></span>
-            <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Fibonacci Heaps slides</a></span>
+        <span>8</span>
+        <span>Disjoint Sets, Fibonacci Heaps</span>
+        <span>Ch. 20</span>
+        <span>None</span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Disjoint sets PDF</a></span>
+        <span><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">Fibonacci Heaps slides</a></span>
 
-        </div>
-        
-        <br>
-        <a href="https://utoronto.zoom.us/rec/play/w5Ims_xwzyJUVhutTMqNBT0caqXCWYyMWx5X-FJvA1dFPpCrjdO8V5osw6hsxEM74HVTmX9jZ2jdwCLj.qvnXbtIQPChGF0bo" target="_blank">
-            Lecture video link (recurring)
-        </a>
-        <br>
     </div>
 
-    <footer>
-        <p>
-            Website created by Leo Wang and Aisha Abdul Rahiman
-        </p>
-        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">
-            Faculty of Computer Science
-        </a>
-    </footer>
-</body>
-</html>
+    <br>
+    <a href="https://utoronto.zoom.us/rec/play/w5Ims_xwzyJUVhutTMqNBT0caqXCWYyMWx5X-FJvA1dFPpCrjdO8V5osw6hsxEM74HVTmX9jZ2jdwCLj.qvnXbtIQPChGF0bo" target="_blank">
+        Lecture video link (recurring)
+    </a>
+    <br>
+
+{% endblock %}
 

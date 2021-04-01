@@ -6,7 +6,7 @@
 
     <form method="post">
         Select an instructor:
-        <select id="instructor-dropdown">
+        <select name="instructor-dropdown">
             {% for i in instructors %}
                 <option value="{{ i }}">{{ i }}</option>
             {% endfor %}
