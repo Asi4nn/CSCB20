@@ -10,6 +10,9 @@
             <label for="username">Username</label>
             <input name="username" id="username" required>
 
+            <label for="name">Full Name</label>
+            <input name="name" id="name" required>
+
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
 
@@ -29,6 +32,11 @@
 
             <input type="submit" value="Register" class="button">
         </form>
+        {% if msg != None %}
+            <div class="alert">
+                {{ msg }}
+            </div>
+        {% endif %}
         <a href="/">Already have an account?</a>
     </div>
 

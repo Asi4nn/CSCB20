@@ -93,6 +93,11 @@ form > .button {
     vertical-align: center;
 }
 
+.alert {
+    color: red;
+    text-align: center;
+}
+
 /* Navbar */
 
 .nav {

@@ -1,6 +1,7 @@
 from auth import *
-from flask import Flask, redirect, render_template, request, session, abort, url_for
+from flask import Flask, redirect, render_template, request, session, url_for
 from os import urandom
+from re import match
 
 app = Flask(__name__)
 
@@ -32,15 +33,36 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/register')
+@app.route('/register',  methods=['POST', 'GET'])
 def register():
-    return render_template('register.html')
+    close_session()
+    msg = None
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        name = request.form['name']
+        usertype = request.form['usertype']
+
+        account = record("SELECT * FROM Users WHERE username = ?", username)
+
+        if account:
+            msg = "Account already exists!"
+        elif not match(r"[^@]+[@][^@]+\.[a-zA-Z]+", email):
+            msg = "Invalid email address!"
+        elif not match(r"[A-Za-z0-9]+", username):
+            msg = 'Username must contain only characters and numbers!'
+        else:
+            execute("INSERT INTO Users VALUES (?, ?, ?, ?, ?)", username, name, password, email, usertype)
+            commit()
+            msg = 'Account successfully created!'
+    return render_template('register.html', msg=msg)
 
 
-@app.route('/<name>')
-def page(name: str):
-    check_login()
-    return render_template(name + ".html")
+# @app.route('/<name>')
+# def page(name: str):
+#     check_login()
+#     return render_template(name + ".html")
 
 
 @app.route("/grades")

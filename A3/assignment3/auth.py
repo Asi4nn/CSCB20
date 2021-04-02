@@ -14,13 +14,16 @@ def login_user(username: str):
 
 def get_usertype(username: str):
     row = record("SELECT usertype FROM Users WHERE username = ?", username)
-    return row[0]
+    return row[0]   # i have no idea why record returns a tuple
 
 
 def close_session():
     # remove the username from the session if it is there
-    session.pop('username', None)
-    session.pop('usertype', None)
+    if 'username' in session:
+        session.pop('username', None)
+        session.pop('usertype', None)
+    else:
+        print("No user logged in")
 
 
 def check_login():
