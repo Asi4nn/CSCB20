@@ -13,7 +13,8 @@ def login_user(username: str):
 
 
 def get_usertype(username: str):
-    return record("SELECT usertype FROM Users WHERE username = ?", username)
+    row = record("SELECT usertype FROM Users WHERE username = ?", username)
+    return row[0]
 
 
 def close_session():

@@ -46,16 +46,18 @@ def page(name: str):
 @app.route("/grades")
 def grades():
     check_login()
-    if session['username'] == 'student':
+    if session['usertype'] == 'student':
         # render student template
         headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
         data = record("SELECT * FROM Marks WHERE username = ?", session['username'])
         return render_template('grades.html', headings=headings, data=data)
-    elif session['username'] == 'instructor':
+    elif session['usertype'] == 'instructor':
         # render instructor template
         headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
         data = record("SELECT * FROM Marks WHERE username = ?", session['username'])
         return render_template('grades.html', headings=headings, data=data)
+    else:
+        raise ValueError('Invalid usertype: ' + session['usertype'])
 
 
 if __name__ == '__main__':
