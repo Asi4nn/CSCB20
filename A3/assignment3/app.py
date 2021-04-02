@@ -47,8 +47,8 @@ def page(name: str):
 def grades():
     
     headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
-    data = records("SELECT * FROM Marks WHERE username = ?", session['username'])
-    return render_template('grades.html', headers=headings, data=data)
+    data = record("SELECT * FROM Marks WHERE username = ?", session['username'])
+    return render_template('grades.html', headings=headings, data=data)
 
 
 if __name__ == '__main__':
