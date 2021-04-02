@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Users(
 
 CREATE TABLE IF NOT EXISTS Marks(
     username        TEXT PRIMARY KEY,
-    name            TEXT
+    name            TEXT,
     A1 mark         INTEGER,
 	A2 mark         INTEGER,
 	A3 mark         INTEGER,
@@ -26,10 +26,6 @@ CREATE TABLE IF NOT EXISTS Feedback(
 	q3         TEXT,
 	q4         TEXT
 );
-
-
-
-
 
 
 INSERT INTO Users VALUES("instructor1", "instr1", "instructor1", "instructor1@gmail.com", "instructor");

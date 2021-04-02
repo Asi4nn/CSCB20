@@ -3,9 +3,17 @@
 {% block title %}Lectures{% endblock %}
 
 {% block content %}
+<div class="grades-table">
+{% for header in headings %}
 
-{% for row in rows %}
-    <span class="table-header"> {{ row }}</span>
+    <span class="table-header">{{ header }}</span>
 {% endfor %}
+
+{% for row in data %}
+    <span>{{ row }}</span>
+    
+{% endfor %}
+</div>
+
 
 {% endblock %}

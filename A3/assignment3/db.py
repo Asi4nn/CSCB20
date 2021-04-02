@@ -52,3 +52,4 @@ def column(command, *values):
 
 def execute(command, *values):
     cur.execute(command, tuple(values))
+

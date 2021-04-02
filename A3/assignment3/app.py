@@ -43,6 +43,13 @@ def page(name: str):
         abort(403)
     return render_template(name + ".html")
 
+@app.route("/grades")
+def grades():
+    
+    headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
+    data = records("SELECT * FROM Marks WHERE username = ?", session['username'])
+    return render_template('grades.html', headers=headings, data=data)
+
 
 if __name__ == '__main__':
     app.secret_key = urandom(12)

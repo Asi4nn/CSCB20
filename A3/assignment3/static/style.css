@@ -249,6 +249,21 @@ footer > a:hover {
     font-weight: bold;
 }
 
+.grades-table{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    background: darkgray;
+}
+
+.grades-table > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+
 /* Fade in text */
 
 .fade-in {

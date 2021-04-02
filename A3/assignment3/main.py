@@ -50,19 +50,20 @@ def feedbackpage():
         Q4 = request.form['feedback4']
         sqlconnection = sqlite3.Connection(dbLocation + "\assignment3.db")
         cursor = sqlconnection.cursor()
-        query1 = "INSERT INTO Feedback VALUES ( '{q1}', '{q2}', '{q3}', '{q4}')".format(q1 = Q1, q2 = Q2, q3 = Q3, q4 = Q4)
+        query1 = "INSERT INTO Feedback VALUES ('{q1}', '{q2}', '{q3}', '{q4}')".format(q1 = Q1, q2 = Q2, q3 = Q3, q4 = Q4)
         cursor.execute(query1)
         sqlconnection.commit()
-        #add here if usertype = student render_template register.html else dont. also add code for dropdown
-        return render_template('register.html')
+        #add here if usertype = student render_template feedback.html else dont. also add code for dropdown
+        return render_template('feedback.html')
 
 @app.route("/grades")
 def gradespage():
     
     sqlconnection = sqlite3.Connection(dbLocation + "\assignment3.db")
     cursor = sqlconnection.cursor()
+    
     if session['usertype'] == student:
-        query1 = "SELECT username, A1 mark, A2 mark, A3 mark, final exam mark FROM Marks WHERE username = ?", username)
+        query1 = "SELECT * FROM Marks WHERE username = ?", username)
         rows = cursor.execute(query1)
         rows = rows.fetchone()
     elif session['usertype'] == instructor:
