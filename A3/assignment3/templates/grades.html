@@ -3,17 +3,15 @@
 {% block title %}Lectures{% endblock %}
 
 {% block content %}
-<div class="grades-table">
-{% for header in headings %}
 
-    <span class="table-header">{{ header }}</span>
-{% endfor %}
+    <div class="grades-table">
+        {% for header in headings %}
+            <span class="table-header">{{ header }}</span>
+        {% endfor %}
 
-{% for row in data %}
-    <span>{{ row }}</span>
-    
-{% endfor %}
-</div>
-
+        {% for row in data %}
+            <span>{{ row }}</span>
+        {% endfor %}
+    </div>
 
 {% endblock %}
