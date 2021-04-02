@@ -1,5 +1,5 @@
 from db import *
-from flask import session
+from flask import session, abort
 
 
 def valid_login(username: str):
@@ -20,3 +20,8 @@ def close_session():
     # remove the username from the session if it is there
     session.pop('username', None)
     session.pop('usertype', None)
+
+
+def check_login():
+    if 'username' not in session:
+        abort(403)

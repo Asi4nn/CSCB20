@@ -39,16 +39,23 @@ def register():
 
 @app.route('/<name>')
 def page(name: str):
-    if 'username' not in session:
-        abort(403)
+    check_login()
     return render_template(name + ".html")
+
 
 @app.route("/grades")
 def grades():
-    
-    headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
-    data = record("SELECT * FROM Marks WHERE username = ?", session['username'])
-    return render_template('grades.html', headings=headings, data=data)
+    check_login()
+    if session['username'] == 'student':
+        # render student template
+        headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
+        data = record("SELECT * FROM Marks WHERE username = ?", session['username'])
+        return render_template('grades.html', headings=headings, data=data)
+    elif session['username'] == 'instructor':
+        # render instructor template
+        headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
+        data = record("SELECT * FROM Marks WHERE username = ?", session['username'])
+        return render_template('grades.html', headings=headings, data=data)
 
 
 if __name__ == '__main__':
