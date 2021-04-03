@@ -12,8 +12,11 @@
             <span class="table-header">{{ header }}</span>
         {% endfor %}
 
+
         {% for row in data %}
-            <span>{{ row }}</span>
+            {% for entry in row %}
+                <span>{{ entry }}</span>
+            {% endfor %}
         {% endfor %}
         
             <span></span>

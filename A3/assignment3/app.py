@@ -59,23 +59,22 @@ def register():
     return render_template('register.html', msg=msg)
 
 
-# @app.route('/<name>')
-# def page(name: str):
-#     check_login()
-#     return render_template(name + ".html")
+@app.route('/<name>')
+def page(name: str):
+    check_login()
+    return render_template(name + ".html")
 
 
 @app.route("/grades")
 def grades():
     check_login()
+    headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
     if session['usertype'] == 'student':
         # render student template
-        headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
-        data = record("SELECT * FROM Marks WHERE username = ?", session['username'])
+        data = records("SELECT * FROM Marks WHERE username = ?", session['username'])
         return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
         # render instructor template
-        headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
         data = records("SELECT * FROM Marks")
         return render_template('grades.html', headings=headings, data=data)
     else:
