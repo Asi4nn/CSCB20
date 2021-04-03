@@ -4,6 +4,9 @@
 
 {% block content %}
 
+<h3>Grades:</h3>
+<br>
+
     <div class="grades-table">
         {% for header in headings %}
             <span class="table-header">{{ header }}</span>
@@ -12,6 +15,13 @@
         {% for row in data %}
             <span>{{ row }}</span>
         {% endfor %}
+
+        <span></span>
+        <span></span>
+        <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
+        <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
+        <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
+        <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
     </div>
 
 {% endblock %}

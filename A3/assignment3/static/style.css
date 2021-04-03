@@ -260,6 +260,8 @@ footer > a:hover {
     border-top: 1px solid black;
     border-right: 1px solid black;
     background: darkgray;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .grades-table > span {
