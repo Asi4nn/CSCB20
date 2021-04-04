@@ -71,14 +71,37 @@ def grades():
     headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
     if session['usertype'] == 'student':
         # render student template
-        data = records("SELECT * FROM Marks WHERE username = ?", session['username'])
-        return render_template('grades.html', headings=headings, data=data)
+        data = records("SELECT username, name, A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])
+        if request.method == 'POST':
+            username = session['username']
+            name = session['name']
+            A1 reason = request.form['A1 reason']
+            A2 reason = request.form['A2 reason']
+            A3 reason = request.form['A3 reason']
+            final reason = request.form['final reason']
+        
+            execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?, ?)", session['username'], session['name'], A1 reason, A2 reason, A3 reason, final reason)
+            commit()
+            return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
         # render instructor template
         data = records("SELECT * FROM Marks")
         return render_template('grades.html', headings=headings, data=data)
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])
+
+    
+    if request.method == 'POST':
+        username = session['username']
+        name = session['name']
+        A1 reason = request.form['A1 reason']
+        A2 reason = request.form['A2 reason']
+        A3 reason = request.form['A3 reason']
+        final reason = request.form['final reason']
+        
+        execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?, ?)", session['username'], session['name'], A1 reason, A2 reason, A3 reason, final reason)
+        commit()
+
 
 
 if __name__ == '__main__':
