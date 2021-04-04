@@ -65,22 +65,20 @@ def page(name: str):
     return render_template(name + ".html")
 
 
-@app.route("/grades")
+@app.route("/grades", methods=['POST', 'GET'])
 def grades():
     check_login()
-    headings = ("username", "name", "A1 mark", "A2 mark", "A3 mark", "final exam mark")
+    headings = ("username", "name", "A1", "A2", "A3", "final")
     if session['usertype'] == 'student':
         # render student template
         data = records("SELECT username, name, A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])
         if request.method == 'POST':
-            username = session['username']
-            name = session['name']
             A1_reason = request.form['A1_reason']
             A2_reason = request.form['A2_reason']
             A3_reason = request.form['A3_reason']
             final_reason = request.form['final_reason']
         
-            execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?, ?)", session['username'], session['name'], A1_reason, A2_reason, A3_reason, final_reason)
+            execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?)", session['username'], A1_reason, A2_reason, A3_reason, final_reason)
             commit()
             return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
