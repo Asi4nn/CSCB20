@@ -71,10 +71,10 @@ def page(name: str):
 @app.route("/grades", methods=['POST', 'GET'])
 def grades():
     check_login()
-    headings = ("username", "name", "A1", "A2", "A3", "final")
+    headings = ("username", "name", "A1", "A2", "A3", "final", "A1_reason", "A2_reason", "A3_reason", "final_reason")
     if session['usertype'] == 'student':
         # render student template
-        data = records("SELECT username, name, A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])
+        data = records("SELECT * FROM Marks WHERE username = ?", session['username'])
         if request.method == 'POST':
             A1_reason = request.form['A1_reason']
             A2_reason = request.form['A2_reason']
@@ -85,6 +85,8 @@ def grades():
             commit()
 
         return render_template('grades.html', headings=headings, data=data)
+        
+    
     elif session['usertype'] == 'instructor':
         # render instructor template
         data = records("SELECT * FROM Marks")
