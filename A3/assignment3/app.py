@@ -75,12 +75,12 @@ def grades():
         if request.method == 'POST':
             username = session['username']
             name = session['name']
-            A1 reason = request.form['A1 reason']
-            A2 reason = request.form['A2 reason']
-            A3 reason = request.form['A3 reason']
-            final reason = request.form['final reason']
+            A1_reason = request.form['A1_reason']
+            A2_reason = request.form['A2_reason']
+            A3_reason = request.form['A3_reason']
+            final_reason = request.form['final_reason']
         
-            execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?, ?)", session['username'], session['name'], A1 reason, A2 reason, A3 reason, final reason)
+            execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?, ?)", session['username'], session['name'], A1_reason, A2_reason, A3_reason, final_reason)
             commit()
             return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
@@ -89,19 +89,6 @@ def grades():
         return render_template('grades.html', headings=headings, data=data)
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])
-
-    
-    if request.method == 'POST':
-        username = session['username']
-        name = session['name']
-        A1 reason = request.form['A1 reason']
-        A2 reason = request.form['A2 reason']
-        A3 reason = request.form['A3 reason']
-        final reason = request.form['final reason']
-        
-        execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?, ?)", session['username'], session['name'], A1 reason, A2 reason, A3 reason, final reason)
-        commit()
-
 
 
 if __name__ == '__main__':
