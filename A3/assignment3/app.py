@@ -5,6 +5,7 @@ from re import match
 
 app = Flask(__name__)
 
+# Login Routes
 
 @app.route('/')
 def index():
@@ -59,6 +60,8 @@ def register():
     return render_template('register.html', msg=msg)
 
 
+# Website Pages
+
 @app.route('/<name>')
 def page(name: str):
     check_login()
@@ -80,7 +83,8 @@ def grades():
         
             execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?)", session['username'], A1_reason, A2_reason, A3_reason, final_reason)
             commit()
-            return render_template('grades.html', headings=headings, data=data)
+
+        return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
         # render instructor template
         data = records("SELECT * FROM Marks")
