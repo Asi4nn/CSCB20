@@ -18,13 +18,15 @@
                 <span>{{ entry }}</span>
             {% endfor %}
         {% endfor %}
-        
+
+        {% if session['usertype'] == 'student' %}
             <span></span>
             <span></span>
-            <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
-            <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
-            <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
-            <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
+            <span><input type="submit" name="regrade-submit-A1" value="Submit regrade request" class="button"></span>
+            <span><input type="submit" name="regrade-submit-A2" value="Submit regrade request" class="button"></span>
+            <span><input type="submit" name="regrade-submit-A3" value="Submit regrade request" class="button"></span>
+            <span><input type="submit" name="regrade-submit-F" value="Submit regrade request" class="button"></span>
+        {% endif %} 
         
     </div>
 
