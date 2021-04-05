@@ -1,13 +1,16 @@
 {% extends 'navbase.html' %}
 
-{% block title %}Lectures{% endblock %}
+{% block title %}Grades{% endblock %}
 
 {% block content %}
 
 <h3>Grades:</h3>
 <br>
-
-    <div class="grades-table">
+    {% if session['usertype'] == 'student' %}
+        <div class="table-4-col">
+    {% elif session['usertype'] == 'instructor' %}
+        <div class="table-10-col">
+    {% endif %}
         {% for header in headings %}
             <span class="table-header">{{ header }}</span>
         {% endfor %}
@@ -15,18 +18,16 @@
 
         {% for row in data %}
             {% for entry in row %}
-                <span>{{ entry }}</span>
+                {% if entry != None %}
+                    <span>{{ entry }}</span>
+                {% else %}
+                    <span></span>
+                {% endif %}
             {% endfor %}
         {% endfor %}
     
 
         {% if session['usertype'] == 'student' %}
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
             <span>
                 <form method= "POST">
                     <label for="A1">Reason:</label>

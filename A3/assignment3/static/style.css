@@ -221,9 +221,9 @@ footer > a:hover {
     text-decoration: underline;
 }
 
-/* tables */
+/* Tables */
 
-.lec-table {
+.table-6-col {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     border-top: 1px solid black;
@@ -231,13 +231,13 @@ footer > a:hover {
     background: darkgray;
 }
 
-.lec-table > span {
+.table-6-col > span {
     padding: 8px 4px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
 }
 
-.lab-table {
+.table-4-col {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border-top: 1px solid black;
@@ -245,7 +245,35 @@ footer > a:hover {
     background: darkgray;
 }
 
-.lab-table > span {
+.table-4-col > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.table-8-col {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    background: darkgray;
+}
+
+.table-8-col > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.table-10-col {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    background: darkgray;
+}
+
+.table-10-col > span {
     padding: 8px 4px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
@@ -254,21 +282,6 @@ footer > a:hover {
 .table-header {
     background-color: cornflowerblue;
     font-weight: bold;
-}
-
-.grades-table{
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-    background: darkgray;
-    
-}
-
-.grades-table > span {
-    padding: 8px 4px;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
 }
 
 
@@ -325,4 +338,5 @@ footer > a:hover {
 .button:hover {
     background-color: rgb(40, 91, 250);
 }
+
 

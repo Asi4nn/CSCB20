@@ -71,10 +71,10 @@ def page(name: str):
 @app.route("/grades", methods=['POST', 'GET'])
 def grades():
     check_login()
-    headings = ("username", "name", "A1", "A2", "A3", "final", "A1_reason", "A2_reason", "A3_reason", "final_reason")
     if session['usertype'] == 'student':
         # render student template
-        data = records("SELECT * FROM Marks WHERE username = ?", session['username'])
+        headings = ("A1", "A2", "A3", "final")
+        data = records("SELECT A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])
         if request.method == 'POST':
             A1_reason = request.form['A1_reason']
             A2_reason = request.form['A2_reason']
@@ -83,12 +83,10 @@ def grades():
         
             execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?)", session['username'], A1_reason, A2_reason, A3_reason, final_reason)
             commit()
-
         return render_template('grades.html', headings=headings, data=data)
-        
-    
     elif session['usertype'] == 'instructor':
         # render instructor template
+        headings = ("Username", "Name", "A1", "A2", "A3", "Final", "A1_reason", "A2_reason", "A3_reason", "Final_reason")
         data = records("SELECT * FROM Marks")
         return render_template('grades.html', headings=headings, data=data)
     else:
