@@ -1,9 +1,11 @@
-from os.path import isfile
+import os.path
 from sqlite3 import connect
 from datetime import datetime
 
-DB_PATH = "./assignment3.db"
-if not isfile(DB_PATH):
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "assignment3.db")
+
+if not os.path.isfile(DB_PATH):
     raise FileNotFoundError("assignment3.db not found")
 
 
