@@ -18,13 +18,44 @@
                 <span>{{ entry }}</span>
             {% endfor %}
         {% endfor %}
-        
+    
+
+        {% if session['usertype'] == 'student' %}
             <span></span>
             <span></span>
-            <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
-            <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
-            <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
-            <span><input type="submit" name="regrade-submit" value="Submit regrade request" class="button"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>
+                <form method= "POST">
+                    <label for="A1">Reason:</label>
+                    <input type="text" id="A1" name="A1" rows="3" cols="6">
+                    <input type="submit" name="regrade-submit-A1" value="Submit regrade request" class="button">
+                </form>
+            </span>
+            <span>
+                <form method= "POST">
+                    <label for="A2">Reason:</label>
+                    <input type="text" id="A2" name="A2" rows="3" cols="6">
+                    <input type="submit" name="regrade-submit-A2" value="Submit regrade request" class="button">
+                </form>
+            </span>
+            <span>
+                <form method="POST">
+                    <label for="A3">Reason:</label>
+                    <input type="text" id="A3" name="A3" rows="3" cols="6">
+                    <input type="submit" name="regrade-submit-A3" value="Submit regrade request" class="button">
+                </form>
+            </span>
+            <span>
+                <form method="POST">
+                    <label for="final">Reason:</label>
+                    <input type="text" id="final" name="final">
+                    <input type="submit" name="regrade-submit-F" value="Submit regrade request" class="button">
+                </form>
+            </span>
+        {% endif %} 
         
     </div>
 
