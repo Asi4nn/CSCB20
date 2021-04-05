@@ -92,6 +92,47 @@ def grades():
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])
 
+@app.route("/feedback", methods = ['POST', 'GET'])
+def feedbackpage():
+    check_login()
+    # render student template
+    if session['usertype'] == 'student':
+        # get instructor names from database
+        query1 = "SELECT username FROM Users WHERE usertype = '{instructor}'".format(instructor = "instructor")
+        instructors = records(query1)
+        if request.method == "GET":
+            result = []
+            for i in instructors:
+                result.append(i[0])
+            return render_template('feedback.html', instructors=result)
+        elif request.method == "POST":
+            instructor = request.form['instructor-dropdown']
+            Q1 = request.form['feedback1']
+            Q2 = request.form['feedback2']
+            Q3 = request.form['feedback3']
+            Q4 = request.form['feedback4']
+            query2 = "INSERT INTO Feedback VALUES ('{instructor}', '{q1}', '{q2}', '{q3}', '{q4}')".format(instructor = instructor, q1 = Q1, q2 = Q2, q3 = Q3, q4 = Q4)
+            execute(query2)
+            commit()
+            return render_template('index.html')
+    # render instructor template
+    elif session['usertype'] == 'instructor':
+        if request.method == "GET":
+            result = []
+            feedback = records("SELECT * FROM Feedback WHERE username = ?", session['username'])
+            #===========================
+            # need improvement later
+            for i in feedback:
+                result.append(i[1])
+                result.append(i[2])
+                result.append(i[3])
+                result.append(i[4])
+            #=========================
+            return render_template('feedback.html', feedback=result)
+    else:
+        raise ValueError('Invalid usertype: ' + session['usertype'])
+
+
 
 if __name__ == '__main__':
     app.secret_key = urandom(12)
