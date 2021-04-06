@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Marks(
 );
 
 CREATE TABLE IF NOT EXISTS Feedback(
-    username   TEXT PRIMARY KEY,
+    username   TEXT,
     q1         TEXT,
     q2         TEXT,
 	q3         TEXT,
