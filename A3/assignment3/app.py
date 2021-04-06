@@ -72,10 +72,40 @@ def register():
 
 # Website Pages
 
-@app.route('/<name>')
-def page(name: str):
+@app.route('/assignments')
+def assignments():
     check_login()
-    return render_template(name + ".html")
+    return render_template("assignments.html")
+
+@app.route('/calendar')
+def calendar():
+    check_login()
+    return render_template("calendar.html")
+
+@app.route('/exams')
+def exams():
+    check_login()
+    return render_template("exams.html")
+
+@app.route('/labs')
+def labs():
+    check_login()
+    return render_template("labs.html")
+
+@app.route('/lectures')
+def lectures():
+    check_login()
+    return render_template("lectures.html")
+
+@app.route('/resources')
+def resources():
+    check_login()
+    return render_template("resources.html")
+
+@app.route('/syllabus')
+def syllabus():
+    check_login()
+    return render_template("syllabus.html")
 
 
 @app.route("/grades", methods=['POST', 'GET'])
@@ -84,26 +114,29 @@ def grades():
     if session['usertype'] == 'student':
         # render student template
         headings = ("A1", "A2", "A3", "final")
-        data = records("SELECT A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])
         if request.method == 'POST':
             A1_reason = request.form['A1_reason']
             A2_reason = request.form['A2_reason']
             A3_reason = request.form['A3_reason']
             final_reason = request.form['final_reason']
         
-            execute("INSERT OR REPLACE INTO Marks(username, a1_reason, a2_reason, a3_reason, final_reason) VALUES (?, ?, ?, ?, ?)",
-                    session['username'], A1_reason, A2_reason, A3_reason, final_reason)
+            execute("UPDATE Marks SET a1_reason = ?, a2_reason = ?, a3_reason = ?, final_reason = ?) WHERE username = ?",
+                    A1_reason, A2_reason, A3_reason, final_reason, session['username'])
             commit()
+
+        data = records("SELECT A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])
         return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
         # render instructor template
-        headings = ("Username", "Name", "A1", "A2", "A3", "Final", "A1 Remark Request", "A2 Remark Request", "A3 Remark Request", "Final Remark Request")
+        headings = ("Username", "Name", "A1", "A2", "A3", "final", "A1 Remark Request", "A2 Remark Request", "A3 Remark Request", "Final Remark Request")
         data = records("SELECT * FROM Marks")
 
         if request.method == "POST":
-            mark = request.form['mark']
+            mark = request.form['mark'].split(" ")  # string is given in the form "mark studentUsername assignment"
             print(mark)
-
+            execute(f"UPDATE Marks SET {mark[2]} = ? WHERE username = ?", mark[0], mark[1])
+            commit()
+        data = records("SELECT * FROM Marks")
         return render_template('grades.html', headings=headings, data=data)
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])
