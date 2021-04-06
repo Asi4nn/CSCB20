@@ -71,10 +71,10 @@ def page(name: str):
 @app.route("/grades", methods=['POST', 'GET'])
 def grades():
     check_login()
-    headings = ("username", "name", "A1", "A2", "A3", "final", "A1_reason", "A2_reason", "A3_reason", "final_reason")
     if session['usertype'] == 'student':
         # render student template
-        data = records("SELECT * FROM Marks WHERE username = ?", session['username'])
+        headings = ("A1", "A2", "A3", "final")
+        data = records("SELECT A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])
         if request.method == 'POST':
             A1_reason = request.form['A1_reason']
             A2_reason = request.form['A2_reason']
@@ -83,16 +83,55 @@ def grades():
         
             execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?)", session['username'], A1_reason, A2_reason, A3_reason, final_reason)
             commit()
-
         return render_template('grades.html', headings=headings, data=data)
-        
-    
     elif session['usertype'] == 'instructor':
         # render instructor template
+        headings = ("Username", "Name", "A1", "A2", "A3", "Final", "A1_reason", "A2_reason", "A3_reason", "Final_reason")
         data = records("SELECT * FROM Marks")
         return render_template('grades.html', headings=headings, data=data)
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])
+
+@app.route("/feedback", methods = ['POST', 'GET'])
+def feedbackpage():
+    check_login()
+    # render student template
+    if session['usertype'] == 'student':
+        # get instructor names from database
+        query1 = "SELECT username FROM Users WHERE usertype = '{instructor}'".format(instructor = "instructor")
+        instructors = records(query1)
+        if request.method == "GET":
+            result = []
+            for i in instructors:
+                result.append(i[0])
+            return render_template('feedback.html', instructors=result)
+        elif request.method == "POST":
+            instructor = request.form['instructor-dropdown']
+            Q1 = request.form['feedback1']
+            Q2 = request.form['feedback2']
+            Q3 = request.form['feedback3']
+            Q4 = request.form['feedback4']
+            query2 = "INSERT INTO Feedback VALUES ('{instructor}', '{q1}', '{q2}', '{q3}', '{q4}')".format(instructor = instructor, q1 = Q1, q2 = Q2, q3 = Q3, q4 = Q4)
+            execute(query2)
+            commit()
+            return render_template('index.html')
+    # render instructor template
+    elif session['usertype'] == 'instructor':
+        if request.method == "GET":
+            result = []
+            feedback = records("SELECT * FROM Feedback WHERE username = ?", session['username'])
+            #===========================
+            # need improvement later
+            for i in feedback:
+                result.append(i[1])
+                result.append(i[2])
+                result.append(i[3])
+                result.append(i[4])
+            #=========================
+            return render_template('feedback.html', feedback=result)
+    else:
+        raise ValueError('Invalid usertype: ' + session['usertype'])
+
 
 
 if __name__ == '__main__':
