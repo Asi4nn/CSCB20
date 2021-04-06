@@ -99,6 +99,11 @@ def grades():
         # render instructor template
         headings = ("Username", "Name", "A1", "A2", "A3", "Final", "A1 Remark Request", "A2 Remark Request", "A3 Remark Request", "Final Remark Request")
         data = records("SELECT * FROM Marks")
+
+        if request.method == "POST":
+            mark = request.form['mark']
+            print(mark)
+
         return render_template('grades.html', headings=headings, data=data)
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])

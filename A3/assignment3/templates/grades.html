@@ -64,7 +64,9 @@
                     {% if loop.index0 > 1 and loop.index0 < 6 %}
                         {% if entry != None %}
                             <span>
-                                <input class="mark-input" type="number" value="{{ entry }}"/>
+                                <form method="post" student="{{ row[0] }}" asn="{{ headings[loop.index0] }}" onsubmit="return validateGrade(this)">
+                                    <input class="mark-input" type="number" name="mark" value="{{ entry }}"/>
+                                </form>
                             </span>
                         {% else %}
                             <span>
@@ -73,7 +75,7 @@
                         {% endif %}
                     {% else %}
                         {% if entry != None %}
-                            <span>{{ entry }}</span>
+                            <span class="table-alert">{{ entry }}</span>
                         {% else %}
                             <span></span>
                         {% endif %}
@@ -81,6 +83,7 @@
                 {% endfor %}
             {% endfor %}
         </div>
+        <script src="{{ url_for('static', filename='gradeInput.js') }}"></script>
     {% endif %}
 
 {% endblock %}

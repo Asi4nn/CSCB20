@@ -289,6 +289,10 @@ footer > a:hover {
     height: 100%;
 }
 
+.table-alert {
+    background-color: darkred;
+}
+
 
 /* Fade in text */
 
