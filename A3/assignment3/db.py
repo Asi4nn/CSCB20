@@ -26,6 +26,8 @@ def with_commit(func):
 
 @with_commit
 def build():
+    time = datetime.now().strftime("[%H:%M:%S]")
+    print(time, "Building Database")
     if isfile(BUILD_PATH):
         scriptexec(BUILD_PATH)
 

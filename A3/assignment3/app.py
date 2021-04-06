@@ -114,12 +114,11 @@ def grades():
     if session['usertype'] == 'student':
         # render student template
         headings = ("A1", "A2", "A3", "final")
+
         if request.method == 'POST':
             reason = request.form['reason']
-
             execute(f"UPDATE Marks SET {request.form['asn']} = ? WHERE username = ?", reason, session['username'])
             commit()
-
         data = records("SELECT A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])
         return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
@@ -137,14 +136,13 @@ def grades():
         raise ValueError('Invalid usertype: ' + session['usertype'])
 
 
-@app.route("/feedback", methods = ['wPOST', 'GET'])
-def feedbackpage():
+@app.route("/feedback", methods=['POST', 'GET'])
+def feedback():
     check_login()
     # render student template
     if session['usertype'] == 'student':
         # get instructor names from database
-        query1 = "SELECT username FROM Users WHERE usertype = '{instructor}'".format(instructor = "instructor")
-        instructors = records(query1)
+        instructors = records("SELECT username FROM Users WHERE usertype = ?", "instructor")
         if request.method == "GET":
             result = []
             for i in instructors:
@@ -156,8 +154,7 @@ def feedbackpage():
             Q2 = request.form['feedback2']
             Q3 = request.form['feedback3']
             Q4 = request.form['feedback4']
-            query2 = "INSERT INTO Feedback VALUES ('{instructor}', '{q1}', '{q2}', '{q3}', '{q4}')".format(instructor = instructor, q1 = Q1, q2 = Q2, q3 = Q3, q4 = Q4)
-            execute(query2)
+            execute("INSERT INTO Feedback VALUES (?, ?, ?, ?, ?)", instructor, Q1, Q2, Q3, Q4)
             commit()
             return render_template('index.html')
     # render instructor template
