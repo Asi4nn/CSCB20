@@ -4,30 +4,25 @@
 
 {% block content %}
 
-<h3>Grades:</h3>
-<br>
+    <h3>Grades:</h3>
+    <br>
     {% if session['usertype'] == 'student' %}
         <div class="table-4-col">
-    {% elif session['usertype'] == 'instructor' %}
-        <div class="table-10-col">
-    {% endif %}
-        {% for header in headings %}
-            <span class="table-header">{{ header }}</span>
-        {% endfor %}
-
-
-        {% for row in data %}
-            {% for entry in row %}
-                {% if entry != None %}
-                    <span>{{ entry }}</span>
-                {% else %}
-                    <span></span>
-                {% endif %}
+            {% for header in headings %}
+                <span class="table-header">{{ header }}</span>
             {% endfor %}
-        {% endfor %}
-    
 
-        {% if session['usertype'] == 'student' %}
+
+            {% for row in data %}
+                {% for entry in row %}
+                    {% if entry != None %}
+                        <span>{{ entry }}</span>
+                    {% else %}
+                        <span></span>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
             <span>
                 <form method= "POST">
                     <label for="A1">Reason:</label>
@@ -56,8 +51,36 @@
                     <input type="submit" name="regrade-submit-F" value="Submit regrade request" class="button">
                 </form>
             </span>
-        {% endif %} 
-        
-    </div>
+        </div>
+
+    {% elif session['usertype'] == 'instructor' %}
+        <div class="table-10-col">
+            {% for header in headings %}
+                <span class="table-header">{{ header }}</span>
+            {% endfor %}
+
+            {% for row in data %}
+                {% for entry in row %}
+                    {% if loop.index0 > 1 and loop.index0 < 6 %}
+                        {% if entry != None %}
+                            <span>
+                                <input class="mark-input" type="number" value="{{ entry }}"/>
+                            </span>
+                        {% else %}
+                            <span>
+                                <input type="number"/>
+                            </span>
+                        {% endif %}
+                    {% else %}
+                        {% if entry != None %}
+                            <span>{{ entry }}</span>
+                        {% else %}
+                            <span></span>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
 
 {% endblock %}

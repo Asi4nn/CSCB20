@@ -5,7 +5,17 @@ from re import match
 
 app = Flask(__name__)
 
+# Temp page to reset the db
+
+
+@app.route("/reset")
+def reset():
+    build()
+    return redirect(url_for('index'))
+
+
 # Login Routes
+
 
 @app.route('/')
 def index():
@@ -81,18 +91,20 @@ def grades():
             A3_reason = request.form['A3_reason']
             final_reason = request.form['final_reason']
         
-            execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?)", session['username'], A1_reason, A2_reason, A3_reason, final_reason)
+            execute("INSERT OR REPLACE INTO Marks(username, a1_reason, a2_reason, a3_reason, final_reason) VALUES (?, ?, ?, ?, ?)",
+                    session['username'], A1_reason, A2_reason, A3_reason, final_reason)
             commit()
         return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
         # render instructor template
-        headings = ("Username", "Name", "A1", "A2", "A3", "Final", "A1_reason", "A2_reason", "A3_reason", "Final_reason")
+        headings = ("Username", "Name", "A1", "A2", "A3", "Final", "A1 Remark Request", "A2 Remark Request", "A3 Remark Request", "Final Remark Request")
         data = records("SELECT * FROM Marks")
         return render_template('grades.html', headings=headings, data=data)
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])
 
-@app.route("/feedback", methods = ['POST', 'GET'])
+
+@app.route("/feedback", methods = ['wPOST', 'GET'])
 def feedbackpage():
     check_login()
     # render student template
@@ -131,7 +143,6 @@ def feedbackpage():
             return render_template('feedback.html', feedback=result)
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])
-
 
 
 if __name__ == '__main__':
