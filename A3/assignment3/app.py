@@ -133,7 +133,6 @@ def grades():
 
         if request.method == "POST":
             mark = request.form['mark'].split(" ")  # string is given in the form "mark studentUsername assignment"
-            print(mark)
             execute(f"UPDATE Marks SET {mark[2]} = ? WHERE username = ?", mark[0], mark[1])
             commit()
         data = records("SELECT * FROM Marks")
