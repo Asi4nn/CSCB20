@@ -11,3 +11,12 @@ function validateGrade(form) {
     form.mark.value = mark + " " + form.getAttribute('student') + " " + form.getAttribute('asn')
     return true;
 }
+
+function submitRemarkRequest(form) {
+    if (jQuery.trim(form.reason.value)) {
+        alert("Remark request submitted for " + form.reason.id);
+        return true;
+    }
+    alert("Must provide reason for remark!");
+    return false;
+}

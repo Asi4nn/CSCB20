@@ -115,13 +115,9 @@ def grades():
         # render student template
         headings = ("A1", "A2", "A3", "final")
         if request.method == 'POST':
-            A1_reason = request.form['A1_reason']
-            A2_reason = request.form['A2_reason']
-            A3_reason = request.form['A3_reason']
-            final_reason = request.form['final_reason']
-        
-            execute("UPDATE Marks SET a1_reason = ?, a2_reason = ?, a3_reason = ?, final_reason = ?) WHERE username = ?",
-                    A1_reason, A2_reason, A3_reason, final_reason, session['username'])
+            reason = request.form['reason']
+
+            execute(f"UPDATE Marks SET {request.form['asn']} = ? WHERE username = ?", reason, session['username'])
             commit()
 
         data = records("SELECT A1, A2, A3, final FROM Marks WHERE username = ?", session['username'])

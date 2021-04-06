@@ -24,31 +24,35 @@
             {% endfor %}
 
             <span>
-                <form method= "POST">
+                <form method="POST" onsubmit="return submitRemarkRequest(this)">
                     <label for="A1">Reason:</label>
-                    <input type="text" id="A1" name="A1" rows="3" cols="6">
+                    <input type="text" id="A1" name="reason" rows="3" cols="6">
                     <input type="submit" name="regrade-submit-A1" value="Submit regrade request" class="button">
+                    <input type="hidden" name="asn" value="a1_reason"/>
                 </form>
             </span>
             <span>
-                <form method= "POST">
+                <form method="POST" onsubmit="return submitRemarkRequest(this)">
                     <label for="A2">Reason:</label>
-                    <input type="text" id="A2" name="A2" rows="3" cols="6">
+                    <input type="text" id="A2" name="reason" rows="3" cols="6">
                     <input type="submit" name="regrade-submit-A2" value="Submit regrade request" class="button">
+                    <input type="hidden" name="asn" value="a2_reason"/>
                 </form>
             </span>
             <span>
-                <form method="POST">
+                <form method="POST" onsubmit="return submitRemarkRequest(this)">
                     <label for="A3">Reason:</label>
-                    <input type="text" id="A3" name="A3" rows="3" cols="6">
+                    <input type="text" id="A3" name="reason" rows="3" cols="6">
                     <input type="submit" name="regrade-submit-A3" value="Submit regrade request" class="button">
+                    <input type="hidden" name="asn" value="a3_reason"/>
                 </form>
             </span>
             <span>
-                <form method="POST">
+                <form method="POST" onsubmit="return submitRemarkRequest(this)">
                     <label for="final">Reason:</label>
-                    <input type="text" id="final" name="final">
+                    <input type="text" id="final" name="reason">
                     <input type="submit" name="regrade-submit-F" value="Submit regrade request" class="button">
+                    <input type="hidden" name="asn" value="final_reason"/>
                 </form>
             </span>
         </div>
@@ -83,7 +87,8 @@
                 {% endfor %}
             {% endfor %}
         </div>
-        <script src="{{ url_for('static', filename='gradeInput.js') }}"></script>
     {% endif %}
+
+    <script src="{{ url_for('static', filename='grades.js') }}"></script>
 
 {% endblock %}
