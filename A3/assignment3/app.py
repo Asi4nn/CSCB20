@@ -161,16 +161,8 @@ def feedback():
     elif session['usertype'] == 'instructor':
         if request.method == "GET":
             result = []
-            feedback = records("SELECT * FROM Feedback WHERE username = ?", session['username'])
-            #===========================
-            # need improvement later
-            for i in feedback:
-                result.append(i[1])
-                result.append(i[2])
-                result.append(i[3])
-                result.append(i[4])
-            #=========================
-            return render_template('feedback.html', feedback=result)
+            feedback = records("SELECT q1, q2, q3, q4 FROM Feedback WHERE username = ?", session['username'])
+            return render_template('feedback.html', feedback=feedback)
     else:
         raise ValueError('Invalid usertype: ' + session['usertype'])
 
