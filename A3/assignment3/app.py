@@ -65,6 +65,8 @@ def register():
             msg = 'Username must contain only characters and numbers!'
         else:
             execute("INSERT INTO Users VALUES (?, ?, ?, ?, ?)", username, name, password, email, usertype)
+            execute("INSERT INTO Marks VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    username, name, None, None, None, None, None, None, None, None)
             commit()
             msg = 'Account successfully created!'
     return render_template('register.html', msg=msg)
@@ -134,8 +136,8 @@ def grades():
         data = records("SELECT * FROM Marks")
 
         if request.method == "POST":
-            mark = request.form['mark'].split(" ")  # string is given in the form "mark studentUsername assignment"
-            execute(f"UPDATE Marks SET {mark[2]} = ? WHERE username = ?", mark[0], mark[1])
+            mark = request.form['mark']
+            execute(f"UPDATE Marks SET {request.form['asn']} = ? WHERE username = ?", mark, request.form['student'])
             commit()
         data = records("SELECT * FROM Marks")
         return render_template('grades.html', headings=headings, data=data)
