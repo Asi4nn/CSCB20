@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <h3>Grades:</h3>
+    <h3>Grades (press enter to submit marks):</h3>
     <br>
     {% if session['usertype'] == 'student' %}
         <div class="table-4-col">
@@ -18,7 +18,7 @@
                     {% if entry != None %}
                         <span>{{ entry }}</span>
                     {% else %}
-                        <span></span>
+                        <span>N/A</span>
                     {% endif %}
                 {% endfor %}
             {% endfor %}
@@ -68,8 +68,10 @@
                     {% if loop.index0 > 1 and loop.index0 < 6 %}
                         {% if entry != None %}
                             <span>
-                                <form method="post" student="{{ row[0] }}" asn="{{ headings[loop.index0] }}" onsubmit="return validateGrade(this)">
+                                <form method="post" onsubmit="return validateGrade(this)">
                                     <input class="mark-input" type="text" name="mark" value="{{ entry }}"/>
+                                    <input type="hidden" name="asn" value="{{ headings[loop.index0] }}"/>
+                                    <input type="hidden" name="student" value="{{ row[0] }}"/>
                                 </form>
                             </span>
                         {% else %}

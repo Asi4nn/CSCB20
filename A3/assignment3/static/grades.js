@@ -8,7 +8,6 @@ function validateGrade(form) {
         alert("Invalid grade entered!");
         return false;
     }
-    form.mark.value = mark + " " + form.getAttribute('student') + " " + form.getAttribute('asn')
     return true;
 }
 
