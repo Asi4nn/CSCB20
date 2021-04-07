@@ -5,7 +5,7 @@ from re import match
 
 app = Flask(__name__)
 
-# Temp page to reset the db
+# Page to reset the db (for developers)
 
 
 @app.route("/reset")
@@ -77,30 +77,36 @@ def assignments():
     check_login()
     return render_template("assignments.html")
 
+
 @app.route('/calendar')
 def calendar():
     check_login()
     return render_template("calendar.html")
+
 
 @app.route('/exams')
 def exams():
     check_login()
     return render_template("exams.html")
 
+
 @app.route('/labs')
 def labs():
     check_login()
     return render_template("labs.html")
+
 
 @app.route('/lectures')
 def lectures():
     check_login()
     return render_template("lectures.html")
 
+
 @app.route('/resources')
 def resources():
     check_login()
     return render_template("resources.html")
+
 
 @app.route('/syllabus')
 def syllabus():
@@ -123,7 +129,8 @@ def grades():
         return render_template('grades.html', headings=headings, data=data)
     elif session['usertype'] == 'instructor':
         # render instructor template
-        headings = ("Username", "Name", "A1", "A2", "A3", "final", "A1 Remark Request", "A2 Remark Request", "A3 Remark Request", "Final Remark Request")
+        headings = ("Username", "Name", "A1", "A2", "A3", "final", "A1 Remark Request", "A2 Remark Request",
+                    "A3 Remark Request", "Final Remark Request")
         data = records("SELECT * FROM Marks")
 
         if request.method == "POST":
